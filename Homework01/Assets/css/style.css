@@ -53,6 +53,10 @@ li {
     color: #ccc;
 }
 
+p {
+    color: #777777;
+}
+
 a {
     display: inline-block;
     position: relative;
@@ -61,7 +65,7 @@ a {
     text-decoration: none;
 }
 li > a:visited {
-    color: gray;
+    color: #777777;
 }
 
 li > a:hover {
@@ -99,6 +103,7 @@ li > a:before {
     padding-bottom: 10px;
     border: 1px solid #ddd;
     font-family: Arial, Helvetica, sans-serif;
+    text-align: justify;
 }
 
 /* Content Slide Up */
@@ -126,7 +131,7 @@ li > a:before {
 }
 
 h2 {
-    border-bottom: 2px solid gray;
+    border-bottom: 2px solid #ddd;
     color: #4aaaa5;
     font-weight: bold;
     font-size: 24px;
@@ -151,11 +156,31 @@ h2 {
     height: 50px;
 }
 
+.ftext /* Footer Text */ {
+    color: #ccc;
+}
+
 #page-container {
     position: relative;
-    min-height: 100vh !important;
+    min-height: 100vh;
 }
 
 #content-wrap {
     padding-bottom: 50px;
+}
+
+/* Form Formatting for Contact Page */
+input, textarea {
+    width: 946px; /* 960 base width -10 for padding -4 for border) */
+    padding: 5px;
+    margin-bottom: 15px;
+    margin-top: 5px;
+}
+
+.submit {
+    margin-bottom: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4aaaa5;
+    color: white;
 }
