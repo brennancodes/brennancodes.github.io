@@ -175,6 +175,11 @@ input, textarea {
     padding: 5px;
     margin-bottom: 15px;
     margin-top: 5px;
+    color: #777777;
+}
+
+textarea {
+    border-color: #dfdfdf;
 }
 
 .submit {
@@ -183,4 +188,176 @@ input, textarea {
     font-size: 16px;
     background-color: #4aaaa5;
     color: white;
+    cursor: pointer;
+}
+
+/* Float Formatting for Portfolio Page */
+h3 {
+    background-color: #4aaaa5;
+    width: 300px;
+    text-align: center;
+    color: white;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 20px;
+    padding: 15px 0px;
+    margin-top: 140px;
+    font-weight: normal;
+}
+
+#floaty1, #floaty2, #floaty3, #floaty4, #floaty5 {
+    width: 300px;
+    height: 200px;
+    float: left;
+    background-color: blue;
+    margin-right: 30px;
+    margin-bottom: 30px;
+    cursor: pointer;
+}
+
+/* Special Float Rules */
+#floaty3 {
+    margin-right: 0; /* Allows us to make a 3x2 float array instead of a 2x3 */
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
+/* Floaty Animations */
+#floaty1 {
+    -webkit-animation-name: slide2;
+    -webkit-animation-duration: 1.5s;
+    animation-name: slide2;
+    animation-duration: 1.5s;
+}
+
+@-webkit-keyframes slide2 {
+    0% {margin-top: 100%;}
+    20% {margin-top: 100%; opacity: 0;}
+    70% {opacity: .6;}
+    100% {margin-top: 0; opacity: 1;}
+}
+
+@keyframes slide2 {
+    0% {margin-top: 100%;}
+    20% {margin-top: 100%; opacity: 0;}
+    70% {opacity: .6;}
+    100% {margin-top: 0; opacity: 1;}
+}
+
+#floaty2 {
+    -webkit-animation-name: slide2;
+    -webkit-animation-duration: 1.6s;
+    animation-name: slide2;
+    animation-duration: 1.6s;
+}
+
+@-webkit-keyframes slide2 {
+    0% {margin-top: 100%;}
+    20% {margin-top: 100%; opacity: 0;}
+    70% {opacity: .6;}
+    100% {margin-top: 0; opacity: 1;}
+}
+
+@keyframes slide2 {
+    0% {margin-top: 100%;}
+    20% {margin-top: 100%; opacity: 0;}
+    70% {opacity: .6;}
+    100% {margin-top: 0; opacity: 1;}
+}
+
+#floaty3 {
+    -webkit-animation-name: slide2;
+    -webkit-animation-duration: 1.7s;
+    animation-name: slide2;
+    animation-duration: 1.7s;
+}
+
+@-webkit-keyframes slide2 {
+    0% {margin-top: 100%;}
+    20% {margin-top: 100%; opacity: 0;}
+    70% {opacity: .6;}
+    100% {margin-top: 0; opacity: 1;}
+}
+
+@keyframes slide2 {
+    0% {margin-top: 100%;}
+    20% {margin-top: 100%; opacity: 0;}
+    70% {opacity: .6;}
+    100% {margin-top: 0; opacity: 1;}
+}
+
+#floaty4 {
+    -webkit-animation-name: slide2;
+    -webkit-animation-duration: 1.8s;
+    animation-name: slide2;
+    animation-duration: 1.8s;
+}
+
+@-webkit-keyframes slide2 {
+    0% {margin-top: 100%;}
+    20% {margin-top: 100%; opacity: 0;}
+    70% {opacity: .6;}
+    100% {margin-top: 0; opacity: 1;}
+}
+
+@keyframes slide2 {
+    0% {margin-top: 100%;}
+    20% {margin-top: 100%; opacity: 0;}
+    70% {opacity: .6;}
+    100% {margin-top: 0; opacity: 1;}
+}
+
+#floaty5 {
+    -webkit-animation-name: slide2;
+    -webkit-animation-duration: 1.9s;
+    animation-name: slide2;
+    animation-duration: 1.9s;
+}
+
+@-webkit-keyframes slide2 {
+    0% {margin-top: 100%;}
+    20% {margin-top: 100%; opacity: 0;}
+    70% {opacity: .6;}
+    100% {margin-top: 0; opacity: 1;}
+}
+
+@keyframes slide2 {
+    0% {margin-top: 100%;}
+    20% {margin-top: 100%; opacity: 0;}
+    70% {opacity: .6;}
+    100% {margin-top: 0; opacity: 1;}
+}
+
+/* Floaty Backgrounds */  
+#floaty1 {
+    background-image: url('../images/f-enter.jpg');
+    background-size: 500px; /* Adjusting size effectively zooms in/out. Smaller size = bigger zoom. */
+    background-position: -94px 170px; /* Negative first value pulls left, positive second value pulls down. */
+}
+
+#floaty2 {
+    background-image: url('../images/f-bulb.jpg');
+    background-size: 750px; /* Adjusting size effectively zooms in/out. Smaller size = bigger zoom. */
+    background-position: -187px -530px; /* Negative first value pulls left, positive second value pulls down. */
+}
+
+#floaty3 {
+    background-image: url('../images/f-code.jpg');
+    background-size: 500px; /* Adjusting size effectively zooms in/out. Smaller size = bigger zoom. */
+    background-position: -80px 0px; /* Negative first value pulls left, positive second value pulls down. */
+}
+
+#floaty4 {
+    background-image: url('../images/f-icons.jpg');
+    background-size: 300px; /* Adjusting size effectively zooms in/out. Smaller size = bigger zoom. */
+    background-position: 0px 0px; /* Negative first value pulls left, positive second value pulls down. */
+}
+
+#floaty5 {
+    background-image: url('../images/f-story.jpg');
+    background-size: 300px; /* Adjusting size effectively zooms in/out. Smaller size = bigger zoom. */
+    background-position: 0px -30px; /* Negative first value pulls left, positive second value pulls down. */
 }
