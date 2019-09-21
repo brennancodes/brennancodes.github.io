@@ -1,20 +1,20 @@
 # Portfolio
 
-##Overview
+## Overview
 This project is a multifaceted look at my abilities as a web designer, clearly demonstrating my ability to build a website from scratch, bring wireframes to life, and host additional content that showcases my skills. It contains three primary pages: **About, Portfolio,** and **Contact.**
 
-###About
+### About
 The homepage of this website tells you a little bit about who I am and why I became a web developer. You can use the navigation bar at the top right to view the following two pages.
 
-###Portfolio
+### Portfolio
 The portfolio page is an attractively organized container for recent personal projects that I am excited to showcase.
 
-###Contact
+### Contact
 The contact page is a simple form I ask my visitors to fill out in order to get in touch with me. 
 
 ---
 
-####Licensing
+#### Licensing
                     GNU GENERAL PUBLIC LICENSE
                        Version 3, 29 June 2007
 
