@@ -12,6 +12,8 @@ The portfolio page is an attractively organized container for recent personal pr
 ###Contact
 The contact page is a simple form I ask my visitors to fill out in order to get in touch with me. 
 
+---
+
 ####Licensing
                     GNU GENERAL PUBLIC LICENSE
                        Version 3, 29 June 2007
