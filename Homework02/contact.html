@@ -3,48 +3,63 @@
     <head>
         <meta charset="UTF-8">
         <title>Brennan Codes</title>
-        <!-- <link rel="stylesheet" type="text/css" href="Assets/css/reset.css"> -->
+        <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="Assets/css/style.css">
         
     </head>
 
 <body>
-    <div id="page-container">
-        <div id="content-wrap">
-            <header> <!--Contains my name and a list of links for navigating the website.-->
-                <div class="headercontent">
+    <div class="flex-wrapper">
+
+        <header>
+            <nav class="navbar">
+                <div class="headercontent" style="width:960px; margin:0 auto;"">
                     <h1>Brennan Spicer</h1>
-                    <nav>
-                        <ul id="nav">
-                            <li><a href="index.html">About</a></li>
-                            <li><a href="portfolio.html">Portfolio</a></li>
-                            <li><a href="contact.html" class="onpage">Contact</a></li>
-                        </ul>
-                    </nav>
-                </div> <!--HeaderContent-->
-            </header>
+                    <ul class="nav float-right">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="index.html">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="portfolio.html">Portfolio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
 
         <br>
 
-            <div class="content"> <!--Container that holds the section title (About Me), an image of me, and two paragraphs about me.-->
-                <h2>Contact</h2>
-                <form id="contact-me">
-                    Name<br>
-                    <input type="text" name="name" value="John Smith"><br>
-                    E-Mail<br>
-                    <input type="text" name="email" value="example@gmail.com"><br>
-                    Message<br>
-                    <textarea name="message" rows="10" cols="50"></textarea><br>
-                    <!--    <textarea id="message" name="message" placeholder="" style="height:200px"></textarea> -->
-                    <button class="submit" type="button">Submit</button>
-                </form>
-            </div> <!--Content-->
+        <div class="container" style="width: 960px;">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Contact</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <form id="contact-me">
+                        Name<br>
+                        <input type="text" name="name" value="John Smith"><br>
+                        E-Mail<br>
+                        <input type="text" name="email" value="example@gmail.com"><br>
+                        Message<br>
+                        <textarea name="message" rows="10" cols="50"></textarea><br>
+                        <button class="submit" type="button">Submit</button>
+                    </form>
+                </div> 
+            </div>
+        </div> <!--Container-->
 
-        </div> <!--Content-Wrap-->
-
-        <footer id="footer"> <!--Copyright Indicator-->
-            <p class="ftext">&copy; Brennan Spicer 2019</p>
-        </footer>
-    </div> <!--Page-Container-->
+        <div class="card footer">
+            <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                    <p class="ftext">&copy; 2019 Brennan Spicer</p>
+                </blockquote>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
