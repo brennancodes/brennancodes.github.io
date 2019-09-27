@@ -276,3 +276,46 @@ textarea {
     color: white;
     cursor: pointer;
 }
+
+@media screen and (max-width: 992px) {
+    #floaty1 {
+        background-size: 400px;
+        background-position: -90px -60px;
+    }
+    #floaty5 {
+        background-position: -90px -20px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #floaty1, #floaty2, #floaty3, #floaty4, #floaty5 {
+        background-size: 600px;
+    }
+    #floaty1 {
+        background-position: -34px -140px;
+    }
+    #floaty2 {
+        background-position: 150% 55%;
+    }
+    #floaty3 {
+        background-position: 0 0;
+    }
+    #floaty4 {
+        background-position: 20% 20%;
+    }
+    #floaty5 {
+        background-position: 100% 90%;
+    }
+    .row {
+        padding-top: 0;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .container {
+        width: 540px !important;
+    }
+    header, .footer {
+        width: 576px !important;
+    }
+}
