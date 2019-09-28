@@ -2,8 +2,38 @@ body {
     width: 100%;
     margin: 0;
     padding: 0;
-    background: url(../images/bg2.jpg);
+    background: url(../images/connectwork.png);
     font-family: Arial, Helvetica, sans-serif;
+}
+
+.sneaky {
+    visibility: hidden;
+}
+
+.float-right {
+    visibility: visible;
+}
+
+.prof {
+    background: url(../images/student.png);
+    background-size: 50px;
+    width: 50px;
+    height: 50px;
+    z-index: 9999;
+}
+
+.port {
+    background: url(../images/suitcase.png);
+    background-size: 50px;
+    width: 50px;
+    height: 50px;
+}
+
+.msg {
+    background: url(../images/email.png);
+    background-size: 50px;
+    width: 50px;
+    height: 50px;
 }
 
 html {
@@ -11,6 +41,20 @@ html {
     padding: 0;
     width: 100%;
 }
+
+.headercontent {
+    width: 1140px;
+    margin: 0 auto;
+}
+
+/* .headercontent {
+    width:960px; 
+    margin:0 auto;
+}
+
+.container {
+    width: 960px;
+} */
 
 h1 {
     background: #4aaaa5;
@@ -30,6 +74,7 @@ header {
 
 .img-fluid {
     padding-right: 20px;
+    max-width: 25%;
 }
 
 .container {
@@ -57,7 +102,7 @@ h2 {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-    justify-content: space-between
+    justify-content: space-between;
   }
 
 .footer {
@@ -227,13 +272,13 @@ li > a:hover {
 #floaty1 {
     background-image: url('../images/f-enter.jpg');
     background-size: 500px; /* Adjusting size effectively zooms in/out. Smaller size = bigger zoom. */
-    background-position: -94px 170px; /* Negative first value pulls left, positive second value pulls down. */
+    background-position: -70px 170px; /* Negative first value pulls left, positive second value pulls down. */
 }
 
 #floaty2 {
-    background-image: url('../images/f-bulb.jpg');
+    background-image: url('../images/f-gear.jpg');
     background-size: 750px; /* Adjusting size effectively zooms in/out. Smaller size = bigger zoom. */
-    background-position: -187px -530px; /* Negative first value pulls left, positive second value pulls down. */
+    background-position: -187px 0px; /* Negative first value pulls left, positive second value pulls down. */
 }
 
 #floaty3 {
@@ -244,14 +289,14 @@ li > a:hover {
 
 #floaty4 {
     background-image: url('../images/f-icons.jpg');
-    background-size: 300px; /* Adjusting size effectively zooms in/out. Smaller size = bigger zoom. */
+    background-size: 350px; /* Adjusting size effectively zooms in/out. Smaller size = bigger zoom. */
     background-position: 0px 0px; /* Negative first value pulls left, positive second value pulls down. */
 }
 
 #floaty5 {
     background-image: url('../images/f-story.jpg');
-    background-size: 300px; /* Adjusting size effectively zooms in/out. Smaller size = bigger zoom. */
-    background-position: 0px -30px; /* Negative first value pulls left, positive second value pulls down. */
+    background-size: 350px; /* Adjusting size effectively zooms in/out. Smaller size = bigger zoom. */
+    background-position: 0px -40px; /* Negative first value pulls left, positive second value pulls down. */
 }
 
 /* Form Formatting for Contact Page */
@@ -285,37 +330,149 @@ textarea {
     #floaty5 {
         background-position: -90px -20px;
     }
-}
+    body {
+        font-size: 2em;
+        text-align: justify;
+    }
+    .container, .headercontent {
+        max-width: 992px;
+    }
+    .headercontent {
+        max-width: 100%;
+    }
+    .container {
+        max-width: 96%;
+    }
+    .headercontent {
+        max-height: 150px;
+    }
+    h1 {
+        font-size: 2.5em;
+        margin: 0 auto;
+        text-align: center;
+    }
+    h2 {
+        font-size: 2em;
+    }
+    header {
+        height: 150px;
+    }
+    .nav-item {
+        margin-top: 20px;
+    }
+    .navbar {
+        max-width: 992px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 0;
+        padding-top: 20px;
+    }
+    .float-right {
+        visibility: hidden;
+        display: none;
+    }
+    .sneaky {
+        visibility: visible;
+        max-width: 37%;
+        min-width: 240px;
+        float: right;
+        padding-right: 30px;
+    }
+    .icon-wrap {
+        display: block;
+    }
+    .ffs {
+        width: 33.33%;
+    }
 
-@media screen and (max-width: 768px) {
+    .nav-link {
+        padding: 0;
+        margin-left: 30px;
+    }
+
+    .nav-link:nth-of-type(3) {
+        margin-right: 0;
+    }
+    form {
+        font-size: 1.8em;
+    }
+
+    .col-lg-4 {
+        min-width: 90%;
+        margin: 0 auto;
+    }
     #floaty1, #floaty2, #floaty3, #floaty4, #floaty5 {
-        background-size: 600px;
-    }
-    #floaty1 {
-        background-position: -34px -140px;
-    }
-    #floaty2 {
-        background-position: 150% 55%;
-    }
-    #floaty3 {
+        background-size: 900px;
         background-position: 0 0;
-    }
-    #floaty4 {
-        background-position: 20% 20%;
+        min-height: 300px;
     }
     #floaty5 {
-        background-position: 100% 90%;
+        background-position: 0 400px;
     }
-    .row {
+    h3{
+        margin-top: 240px;
+    }
+    .submit {
+        font-size: 1.2em;
+        margin: 0 auto;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+}
+
+@media screen and (max-width: 856px) {
+    header {
+        height: 200px;
+    }
+    .headercontent {
+        min-height: 200px;
+    }
+    h1 {
+        margin: 0 auto;
+        width: 100%;
+    }
+    .navbar {
         padding-top: 0;
+    }
+    .sneaky {
+        float: none;
+        min-width: 100% !important;
+        margin: 0 auto;
+        padding: 0;
+    }
+    .icon-wrap {
+        width: 100%;
+        margin: 0 auto;
+    }
+    .float-right {
+        display: none !important;
+    }
+    .nav-link {
+        padding-left: 25px;
+        padding-right: 25px;
+        margin: 0 auto;
+    }
+    .ffs {
+        width: 33.33%;
     }
 }
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 587px) {
+    header {
+        min-width: 587px;
+    }
+    h1 {
+        min-width: 587px;
+    }
     .container {
-        width: 540px !important;
+        min-width: 587px;
     }
-    header, .footer {
-        width: 576px !important;
+    .icon-wrap {
+        min-width: 587px;
     }
+    .footer {
+        min-width: 587px;
+    }
+
 }
