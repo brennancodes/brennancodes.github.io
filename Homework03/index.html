@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="Assets/CSS/style.css">
+    <script type="text/javascript"> 
+    var totalCount = 5;
+    function ChangeIt() 
+    {
+    var num = Math.ceil( Math.random() * totalCount );
+    document.body.background = 'Assets/images/image'+num+'.jpg';
+    }
+    </script>
+    </head>
+
+    <body> 
+        <div class="flexbox">
+        <div class="container">
+            <div class="jumbotron">
+                    <h1 class="display-4">Password Generator</h1>
+                    <br>
+                    <p class="lead">Below, please first enter how many characters you would like your password to have.</p>
+                    <input type="text" id="charNum">
+                    <br><br>
+                    <p class="lead">Next, please use the checkboxes to select which types of characters you'd like to use.</p>                    
+                    <hr class="my-4">
+                    <div class="row">
+                        <div class="col-md-3 col-xs-6">
+                            <p class="checkWords">Lowercase letters</p>
+                        </div>
+                        <div class="col-md-3 col-xs-6">
+                            <input type="checkbox" class="checkers" id="checkLow">
+                        </div>
+                        <div class="col-md-3 hidden-xs"></div>
+                        <div class="col-md-3 hidden-xs"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 col-xs-6">
+                            <p class="checkWords">Uppercase letters</p>
+                        </div>
+                        <div class="col-md-3 col-xs-6">
+                            <input type="checkbox" class="checkers" id="checkUp">
+                        </div>
+                        <div class="col-md-3 hidden-xs"></div>
+                        <div class="col-md-3 hidden-xs"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 col-xs-6">
+                            <p class="checkWords">Numbers</p>
+                        </div>
+                        <div class="col-md-3 col-xs-6">
+                            <input type="checkbox" class="checkers" id="checkNum">
+                        </div>
+                        <div class="col-md-3 hidden-xs"></div>
+                        <div class="col-md-3 hidden-xs"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 col-xs-6">
+                            <p class="checkWords">Special Characters</p>
+                        </div>
+                        <div class="col-md-3 col-xs-6">
+                            <input type="checkbox" class="checkers" id="checkSpec">
+                        </div>
+                        <div class="col-md-3 hidden-xs"></div>
+                        <div class="col-md-3 hidden-xs"></div>
+                    </div>
+                        <br><br>
+
+                    <script>
+                    function checkL() {
+                    document.getElementById("checkLow").checked = true;
+                    }
+                    function uncheckL() {
+                    document.getElementById("checkLow").checked = false;
+                    }
+                    function checkU() {
+                    document.getElementById("checkUp").checked = true;
+                    }
+                    function uncheckU() {
+                    document.getElementById("checkUp").checked = false;
+                    }                    
+                    function checkN() {
+                    document.getElementById("checkNum").checked = true;
+                    }
+                    function uncheckN() {
+                    document.getElementById("checkNum").checked = false;
+                    }                    
+                    function checkS() {
+                    document.getElementById("checkSpec").checked = true;
+                    }
+                    function uncheckS() {
+                    document.getElementById("checkSpec").checked = false;
+                    }
+
+                    </script>
+                    <p class="lead">
+                      <a class="btn btn-primary btn-lg" href="#" role="button">Generate Password</a>
+                    </p>
+                    <p class="warning"></p>
+            </div> <!--Jumbo-->
+        
+        </div>
+        </div>
+    </body> 
+    <script type="text/javascript"> 
+    ChangeIt();
+    </script> 
+</html>
+
