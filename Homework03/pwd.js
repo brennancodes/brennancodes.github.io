@@ -25,9 +25,6 @@ var Ao = ABC + oneTwoThree;
 var As = ABC + specialOnes;
 var os = oneTwoThree + specialOnes;
 
-//this string holds only the characters we select.
-var fillMe = "";
-
 //This function merely checks and logs whether boxes are checked
 function checkBoo(checkBox) {
     console.log(checkBox.checked);
@@ -44,6 +41,12 @@ generatePassword.addEventListener("click",function(){
     checkBoo(checkNum); //Checks the T/F value of numbers (checkNum)
     checkBoo(checkSpec); //Checks the T/F value of special chars (specChar)
     checkVal(charNum); //Checks the value of the input box
+
+    //setting the values of these variables within the function effectively clears them with each button click.
+    var fillMe = ""; //this string holds only the characters we select.
+
+    var password = "";//this string takes the output from our function using characters from fillMe
+
     if (charNum.value < 8 || charNum.value > 128) {
         document.getElementById("warn").innerHTML = "Please select a value between 8 and 128.";
     } //this says if user enters < 8 or > 128, print a warning.
@@ -101,10 +104,15 @@ generatePassword.addEventListener("click",function(){
             document.getElementById("warn").innerHTML = "There was an issue running the program. Please refresh your page and try again.";
         }
         console.log(fillMe)
-        for (var i = 0; i < charNum.value; i++) {
-            var password = Math.floor(Math.random() * fillMe.length);
-        }
-        document.getElementById("password").innerHTML = password;
+        while (password.length < charNum.value) {
+            password += fillMe[Math.floor(Math.random() * fillMe.length)];
+        } 
+        document.getElementById("password").innerHTML = "Your secure password:" + "<br /><br />" + password;
+
+        // for (var i = 0; i < charNum.value; i++) {
+        //     var password = fillMe[i];
+        // }
+        // document.getElementById("password").innerHTML = password;
     } //this says if user follows instructions correctly, display no warning.
 })
 
