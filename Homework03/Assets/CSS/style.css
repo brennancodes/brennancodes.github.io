@@ -29,3 +29,9 @@ h1 {
     flex-direction: column;
     justify-content: center;
 }
+
+#warn {
+    font-size: 14px;
+    font-style: italic;
+    color: red;
+}
