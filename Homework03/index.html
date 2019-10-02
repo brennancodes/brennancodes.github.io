@@ -23,7 +23,7 @@
                     <h1 class="display-4">Password Generator</h1>
                     <br>
                     <p class="lead">Below, please first enter how many characters you would like your password to have.</p>
-                    <input type="text" id="charNum">
+                    <input type="number" id="charNum" min="8" max="128">
                     <br><br>
                     <p class="lead">Next, please use the checkboxes to select which types of characters you'd like to use.</p>                    
                     <hr class="my-4">
@@ -69,35 +69,9 @@
                     </div>
                         <br><br>
 
-                    <script>
-                    function checkL() {
-                    document.getElementById("checkLow").checked = true;
-                    }
-                    function uncheckL() {
-                    document.getElementById("checkLow").checked = false;
-                    }
-                    function checkU() {
-                    document.getElementById("checkUp").checked = true;
-                    }
-                    function uncheckU() {
-                    document.getElementById("checkUp").checked = false;
-                    }                    
-                    function checkN() {
-                    document.getElementById("checkNum").checked = true;
-                    }
-                    function uncheckN() {
-                    document.getElementById("checkNum").checked = false;
-                    }                    
-                    function checkS() {
-                    document.getElementById("checkSpec").checked = true;
-                    }
-                    function uncheckS() {
-                    document.getElementById("checkSpec").checked = false;
-                    }
-
                     </script>
                     <p class="lead">
-                      <a class="btn btn-primary btn-lg" href="#" role="button">Generate Password</a>
+                      <a class="btn btn-primary btn-lg" href="#" role="button" id="generatePassword">Generate Password</a>
                     </p>
                     <p class="warning"></p>
             </div> <!--Jumbo-->
@@ -108,5 +82,7 @@
     <script type="text/javascript"> 
     ChangeIt();
     </script> 
+
+    <script src="pwd.js"></script>
 </html>
 
