@@ -10,7 +10,8 @@ var generatePassword = document.getElementById("generatePassword");
 var abc = "abcdefghijklmnopqrstuvwxyz"; //26 chars
 var ABC = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; //26 chars
 var oneTwoThree = "0123456789"; //10 chars
-var specialOnes = " !#$%&'()*+,-./:;<=>?@][\\\"_`{|}~"; //32 chars
+var specialOnes = " !#$%&'()*+,-.\/:;=?@][\\\"_`{|}~"; //32 chars
+//tried using <> in specialOnes and it breaks the HTML.
 
 //This is the least efficient way to organize all the strings.
 var aAos = abc + ABC + oneTwoThree + specialOnes;
@@ -54,7 +55,7 @@ generatePassword.addEventListener("click",function(){
         document.getElementById("warn").innerHTML = "Please select at least one type of character.";
     } //this says if user checks NONE of the boxes, print a warning.
     else {
-        document.getElementById("warn").innerHTML = "";
+        document.getElementById("warn").innerHTML = ""; //this says if user follows instructions correctly, display no warning.
         if (checkLow.checked && checkUp.checked && checkNum.checked && checkSpec.checked) {
             fillMe = aAos;
         }
@@ -108,17 +109,15 @@ generatePassword.addEventListener("click",function(){
             password += fillMe[Math.floor(Math.random() * fillMe.length)];
         } 
         document.getElementById("password").innerHTML = "Your secure password:" + "<br /><br />" + password;
-
-        // for (var i = 0; i < charNum.value; i++) {
-        //     var password = fillMe[i];
-        // }
-        // document.getElementById("password").innerHTML = password;
-    } //this says if user follows instructions correctly, display no warning.
+        console.log(fillMe.length);
+        console.log(password);
+        console.log(password.length);
+    }
 })
 
 
 
-
+//Original Ideas...
 
 //CHECK. Allow user to select number of characters by capturing value of textbox. (min 8 max 128)
 //CHECK. Allow user to select from options for which characters to use.
@@ -131,3 +130,17 @@ generatePassword.addEventListener("click",function(){
 //I can use my checkBoo function to create a variable with that array.
 //Empty string or array at top... if statements to fill the array.
 //Then, feed that array to the generatePass function with math.random stuffs.
+
+//What we ACTUALLY ended up doing...
+
+//Defined four strings relating to the four user options
+//Painstakingly created new strings by assigning new variables to every possible combination (this absolutely CANNOT be the most efficient method)
+//Pulled random characters from new strings until the user input length was met
+
+//What we STILL have to do...
+
+//Create a copy function for the printed code (probably using a button)
+//Make significant stylistic improvements, particularly to password appearance
+//Add my signature slide up animation to the container
+//Detected issue with "<>" in innerHTML breaking code (basically nothing within those brackets shows up). They have temporarily been removed from the character pool.
+//Talk to Chris/TA's about how to solve that issue.
