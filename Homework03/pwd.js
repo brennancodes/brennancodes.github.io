@@ -5,12 +5,13 @@ var checkSpec = document.getElementById("checkSpec");
 var charNum = document.getElementById("charNum");
 
 var generatePassword = document.getElementById("generatePassword");
+var copyPassword = document.getElementById("copyPassword");
 
 //These strings hold our potential password characters.
 var abc = "abcdefghijklmnopqrstuvwxyz"; //26 chars
 var ABC = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; //26 chars
 var oneTwoThree = "0123456789"; //10 chars
-var specialOnes = " !#$%&'()*+,-.\/:;=?@][\\\"_`{|}~"; //32 chars
+var specialOnes = " !#$%&'()*+,-.\/:;=?@][\\\"_`{|}~<>"; //32 chars
 //tried using <> in specialOnes and it breaks the HTML.
 
 //This is the least efficient way to organize all the strings.
@@ -28,12 +29,12 @@ var os = oneTwoThree + specialOnes;
 
 //This function merely checks and logs whether boxes are checked
 function checkBoo(checkBox) {
-    console.log(checkBox.checked);
+    // console.log(checkBox.checked);
 }
 
 //This function merely checks and logs values
 function checkVal(checkVal) {
-    console.log(checkVal.value)
+    // console.log(checkVal.value)
 }
 
 generatePassword.addEventListener("click",function(){
@@ -49,13 +50,14 @@ generatePassword.addEventListener("click",function(){
     var password = "";//this string takes the output from our function using characters from fillMe
 
     if (charNum.value < 8 || charNum.value > 128) {
-        document.getElementById("warn").innerHTML = "Please select a value between 8 and 128.";
+        document.getElementById("warnNum").innerHTML = "Please select a value between 8 and 128.";
     } //this says if user enters < 8 or > 128, print a warning.
     else if (!checkLow.checked && !checkUp.checked && !checkNum.checked && !checkSpec.checked) {
-        document.getElementById("warn").innerHTML = "Please select at least one type of character.";
+        document.getElementById("warnTxt").innerHTML = "Please select at least one type of character.";
     } //this says if user checks NONE of the boxes, print a warning.
     else {
-        document.getElementById("warn").innerHTML = ""; //this says if user follows instructions correctly, display no warning.
+        document.getElementById("warnNum").innerHTML = ""; 
+        document.getElementById("warnTxt").innerHTML = ""; //this says if user follows instructions correctly, display no warning.
         if (checkLow.checked && checkUp.checked && checkNum.checked && checkSpec.checked) {
             fillMe = aAos;
         }
@@ -104,16 +106,27 @@ generatePassword.addEventListener("click",function(){
         else {
             document.getElementById("warn").innerHTML = "There was an issue running the program. Please refresh your page and try again.";
         }
-        console.log(fillMe)
+        // console.log(fillMe)
         while (password.length < charNum.value) {
             password += fillMe[Math.floor(Math.random() * fillMe.length)];
         } 
-        document.getElementById("password").innerHTML = "Your secure password:" + "<br /><br />" + password;
-        console.log(fillMe.length);
+        document.getElementById("sneaky").style.display = "block";
+        document.getElementById("pwdbox").style.height = "100%";
+        document.getElementById("password").style.visibility = "visible";
+        document.getElementById("password").value = password;
+        document.getElementById("copyPassword").style.visibility = "visible";
+        // console.log(fillMe.length);
         console.log(password);
-        console.log(password.length);
+        // console.log(password.length);
+        copyPassword.addEventListener("click",function(){
+            console.log(password);
+            document.getElementById("password").select();
+            document.execCommand("copy");
+        });
     }
 })
+
+
 
 
 
@@ -144,3 +157,5 @@ generatePassword.addEventListener("click",function(){
 //Add my signature slide up animation to the container
 //Detected issue with "<>" in innerHTML breaking code (basically nothing within those brackets shows up). They have temporarily been removed from the character pool.
 //Talk to Chris/TA's about how to solve that issue.
+//Change "your secure password" so it has the original font family.
+//Add more backgrounds because holy fuck that shit is addicting.

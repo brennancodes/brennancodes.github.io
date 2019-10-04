@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>Password Generator</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -24,8 +24,9 @@
                     <br>
                     <p class="lead">Below, please first enter how many characters you would like your password to have.</p>
                     <input type="number" id="charNum" min="8" max="128">
+                    <div id="warnNum"></div>
                     <br><br>
-                    <p class="lead">Next, please use the checkboxes to select which types of characters you'd like to use.</p>                    
+                    <p class="lead">Next, please use the checkboxes to select which types of characters you'd like to use.</p>                  
                     <hr class="my-4">
                     <div class="row">
                         <div class="col-md-3 col-xs-6">
@@ -67,14 +68,29 @@
                         <div class="col-md-3 hidden-xs"></div>
                         <div class="col-md-3 hidden-xs"></div>
                     </div>
+                    <div id="warnTxt"></div>
                         <br><br>
 
                     </script>
-                    <p id="password"></p>
-                    <p id="warn"></p>
+                    <p id="sneaky">Your secure password:</p>
+                    <div id="row">
+                    <div id="pwdbox" class="col-md-12">
+                    <textarea id="password" type="text"></textarea>
+                    </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5 col-xs-6">
                     <p class="lead">
                       <a class="btn btn-primary btn-lg" href="#" role="button" id="generatePassword">Generate Password</a>
                     </p>
+                        </div>
+                        <div class="col-md-2 hidden-xs"></div>
+                        <div class="col-md-5 col-xs-6">
+                    <p class="lead">
+                        <a class="btn btn-primary btn-lg" href="#" role="button" id="copyPassword">Copy Password</a>
+                    </p>
+                        </div>
+                    </div>
             </div> <!--Jumbo-->
         
         </div>

@@ -30,12 +30,53 @@ h1 {
     justify-content: center;
 }
 
-#warn {
+#warnNum {
     font-size: 14px;
     font-style: italic;
     color: red;
+    display: inline;
+    margin-left: 10px;
+}
+
+#warnTxt {
+    font-size: 14px;
+    font-style: italic;
+    color: red;
+    display: inline;
+}
+
+#pwdbox {
+    height: 0;
+    margin-bottom: 20px;
+    padding: 0;
 }
 
 #password {
-    overflow-wrap: anywhere;
+    visibility: hidden;
+    font-family: monospace;
+    text-align: left;
+    vertical-align: middle;
+    word-wrap: break-word; /* solves overflow issues */
+    width: 100%;
+    resize: none;
+}
+
+#copyPassword {
+    visibility: hidden;
+}
+
+#sneaky {
+    display: none;
+    margin-top: -30px;
+    margin-left: 0 !important;
+    text-align: left !important;
+}
+
+.btn {
+    text-align: center;
+    width: 100%;
+}
+
+.hidden-xs {
+    margin: 0;
 }
