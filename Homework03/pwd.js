@@ -37,7 +37,8 @@ function checkVal(checkVal) {
     // console.log(checkVal.value)
 }
 
-generatePassword.addEventListener("click",function(){
+generatePassword.addEventListener("click",function(event){
+    event.preventDefault();
     checkBoo(checkLow); //Checks the T/F value of lowercase (checkLow)
     checkBoo(checkUp); //Checks the T/F value of uppercase (checkUp)
     checkBoo(checkNum); //Checks the T/F value of numbers (checkNum)
@@ -51,9 +52,11 @@ generatePassword.addEventListener("click",function(){
 
     if (charNum.value < 8 || charNum.value > 128) {
         document.getElementById("warnNum").innerHTML = "Please select a value between 8 and 128.";
+        document.getElementById("warnTxt").innerHTML = "";
     } //this says if user enters < 8 or > 128, print a warning.
     else if (!checkLow.checked && !checkUp.checked && !checkNum.checked && !checkSpec.checked) {
         document.getElementById("warnTxt").innerHTML = "Please select at least one type of character.";
+        document.getElementById("warnNum").innerHTML = "";
     } //this says if user checks NONE of the boxes, print a warning.
     else {
         document.getElementById("warnNum").innerHTML = ""; 
@@ -115,6 +118,7 @@ generatePassword.addEventListener("click",function(){
         document.getElementById("password").style.visibility = "visible";
         document.getElementById("password").value = password;
         document.getElementById("copyPassword").style.visibility = "visible";
+        document.getElementById("copyPassword").style.display = "block";
         // console.log(fillMe.length);
         console.log(password);
         // console.log(password.length);

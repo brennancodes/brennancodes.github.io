@@ -4,6 +4,7 @@ body {
 
 h1 {
     text-align: center;
+    margin-top: 10px !important;
 }
 
 .checkWords {
@@ -16,8 +17,26 @@ h1 {
 .container {
     margin: 0 auto;
     opacity: .9;
-    width: 65%;
+    width: 65%;   
+    transition: all 1s ease-in-out .1s; 
+    -webkit-animation-name: enter;
+    -webkit-animation-duration: 1.5s;
+    animation-name: enter;
+    animation-duration: 1.5s;
 }
+
+@-webkit-keyframes enter {
+    0% {margin-top: 50px; opacity: 0;}
+    25% {margin-top: 50px; opacity: 0;}
+    100% {margin-top: 0; opacity: .9;}
+}
+
+@keyframes enter {
+    0% {margin-top: 50px; opacity: 0;}
+    25% {margin-top: 50px; opacity: 0;}
+    100% {margin-top: 0; opacity: .9;}
+}
+
 
 .jumbotron {
     padding: 20px 60px;
@@ -43,6 +62,7 @@ h1 {
     font-style: italic;
     color: red;
     display: inline;
+    transition: color 2s ease-in 0;
 }
 
 #pwdbox {
@@ -79,4 +99,38 @@ h1 {
 
 .hidden-xs {
     margin: 0;
+}
+
+@media screen and (max-width: 980px) {
+    .container {
+        width: 95%;
+        margin: 0 auto;
+        margin-top: 10px;
+    }
+
+    .prompts {
+        font-size: 16px !important;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    #copyPassword {
+        display: none;
+    }
+
+    .checkWords {
+        font-size: 14px !important;
+    }
+
+    #sneaky {
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (max-width: 340px) {
+    .container {
+        width: 320px;
+    }
 }
