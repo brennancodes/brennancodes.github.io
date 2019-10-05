@@ -18,7 +18,6 @@ h1 {
     margin: 0 auto;
     opacity: .9;
     width: 65%;   
-    transition: all 1s ease-in-out .1s; 
     -webkit-animation-name: enter;
     -webkit-animation-duration: 1.5s;
     animation-name: enter;
@@ -62,7 +61,6 @@ h1 {
     font-style: italic;
     color: red;
     display: inline;
-    transition: color 2s ease-in 0;
 }
 
 #pwdbox {

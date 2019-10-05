@@ -6,9 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="Assets/CSS/style.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="Assets/images/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="Assets/images/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="Assets/images/icons/favicon-16x16.png">
+  <link rel="manifest" href="Assets/images/icons/site.webmanifest">
     <script type="text/javascript"> 
-    var totalCount = 5;
-    function ChangeIt() 
+    var totalCount = 6;
+    function randomBackground() 
     {
     var num = Math.ceil( Math.random() * totalCount );
     document.body.background = 'Assets/images/image'+num+'.jpg';
@@ -96,7 +100,7 @@
         </div>
     </body> 
     <script type="text/javascript"> 
-    ChangeIt();
+    randomBackground();
     </script> 
 
     <script src="pwd.js"></script>

@@ -126,40 +126,20 @@ generatePassword.addEventListener("click",function(event){
             console.log(password);
             document.getElementById("password").select();
             document.execCommand("copy");
+            
         });
     }
 })
 
-
-
-
-
-//Original Ideas...
-
-//CHECK. Allow user to select number of characters by capturing value of textbox. (min 8 max 128)
-//CHECK. Allow user to select from options for which characters to use.
-//Pull characters randomly from TRUE booleans (checkboxes).
-
 //Steps:
-//Define arrays or strings for the four options.
-//Create a function that checks the checkboxes.
-//Based off of truth or falsehood, add arrays or strings to a larger array, then use the new array length.
-//I can use my checkBoo function to create a variable with that array.
-//Empty string or array at top... if statements to fill the array.
-//Then, feed that array to the generatePass function with math.random stuffs.
+//CHECK. Define arrays or strings for the four character options.
+//CHECK. Create a function that checks the checkboxes.
+//CHECK. Based off of truth or falsehood, add arrays or strings to a larger array, then use the new array length.
+//CHECK. Empty string "fillMe" at top... if statements fill the array.
+//CHECK. Then, feed that array to the generatePass function with math.random, filling empty string "password".
 
-//What we ACTUALLY ended up doing...
+//Notes...
 
-//Defined four strings relating to the four user options
-//Painstakingly created new strings by assigning new variables to every possible combination (this absolutely CANNOT be the most efficient method)
-//Pulled random characters from new strings until the user input length was met
+//The method used forced us to painstakingly create new strings by assigning new variables to every possible combination (this absolutely CANNOT be the most efficient method)
 
 //What we STILL have to do...
-
-//Create a copy function for the printed code (probably using a button)
-//Make significant stylistic improvements, particularly to password appearance
-//Add my signature slide up animation to the container
-//Detected issue with "<>" in innerHTML breaking code (basically nothing within those brackets shows up). They have temporarily been removed from the character pool.
-//Talk to Chris/TA's about how to solve that issue.
-//Change "your secure password" so it has the original font family.
-//Add more backgrounds because holy fuck that shit is addicting.
