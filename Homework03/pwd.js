@@ -12,7 +12,6 @@ var abc = "abcdefghijklmnopqrstuvwxyz"; //26 chars
 var ABC = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; //26 chars
 var oneTwoThree = "0123456789"; //10 chars
 var specialOnes = " !#$%&'()*+,-.\/:;=?@][\\\"_`{|}~<>"; //32 chars
-//tried using <> in specialOnes and it breaks the HTML.
 
 //This is the least efficient way to organize all the strings.
 var aAos = abc + ABC + oneTwoThree + specialOnes;
@@ -109,7 +108,6 @@ generatePassword.addEventListener("click",function(event){
         else {
             document.getElementById("warn").innerHTML = "There was an issue running the program. Please refresh your page and try again.";
         }
-        // console.log(fillMe)
         while (password.length < charNum.value) {
             password += fillMe[Math.floor(Math.random() * fillMe.length)];
         } 
@@ -119,11 +117,9 @@ generatePassword.addEventListener("click",function(event){
         document.getElementById("password").value = password;
         document.getElementById("copyPassword").style.visibility = "visible";
         document.getElementById("copyPassword").style.display = "block";
-        // console.log(fillMe.length);
-        console.log(password);
-        // console.log(password.length);
-        copyPassword.addEventListener("click",function(){
-            console.log(password);
+
+        copyPassword.addEventListener("click",function(event){
+            event.preventDefault();
             document.getElementById("password").select();
             document.execCommand("copy");
             
@@ -141,5 +137,3 @@ generatePassword.addEventListener("click",function(event){
 //Notes...
 
 //The method used forced us to painstakingly create new strings by assigning new variables to every possible combination (this absolutely CANNOT be the most efficient method)
-
-//What we STILL have to do...
