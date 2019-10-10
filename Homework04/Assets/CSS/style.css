@@ -1,0 +1,50 @@
+button {
+    display: block;
+    width: 90%;
+    height: 40px;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+#questionText {
+    display: block;
+    min-height: 50vh;
+}
+
+.row {
+    border: 1px solid gray;
+}
+
+.col-md-1, .col-md-2, .col-md-6, .col-md-8, .col-md-10, .col-md-12 {
+    border: 1px solid blue;
+}
+
+.sidey {
+    font-size: 32px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.sidebarCont {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+#hsbtn {
+    display: inline-block;
+    content: "submit";
+    height: 40px;
+    width: 40%;
+    margin: 0 auto;
+}
+
+input {
+    height: 40px;
+    width: 40%;
+    margin: 0 auto;
+}
+

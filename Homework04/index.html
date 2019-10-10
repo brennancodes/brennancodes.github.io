@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <title>Office Trivia</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="Assets/CSS/style.css">
+        <link rel="apple-touch-icon" sizes="180x180" href="Assets/images/icons/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="Assets/images/icons/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="Assets/images/icons/favicon-16x16.png">
+        <link rel="manifest" href="Assets/images/icons/site.webmanifest">
+
+    </head>
+
+    <body>
+        <div id="clock"></div>
+        <div class="container">
+            <div id="intro">
+                <div class="jumbotron">
+                        <h1 class="display-4 text-center">Office Trivia</h1>
+                        <p class="lead text-center">This is a simple trivia test about The Office TV show. When you click the play
+                            button,
+                            your timer will begin.</p>
+                        <hr class="my-4">
+                        <p class="lead">
+                            <a class="btn btn-primary btn-lg" href="#" role="button" id="playButton">Play!</a>
+                        </p>
+                    <div id="questions">
+                        <div class="row">
+                            <div class="col-md-12" id="questionText"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <button class="answerButton" id="btn1"></button>
+                            </div>
+                            <div class="col-md-6">
+                                <button class="answerButton" id="btn2"></button>
+                            </div>
+                        </div>
+                        <br><br>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <button class="answerButton" id="btn3"></button>
+                            </div>
+                            <div class="col-md-6">
+                                <button class="answerButton" id="btn4"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+
+    <script src="questions.js"></script>
+
+</html>
