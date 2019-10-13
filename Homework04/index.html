@@ -1,60 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <title>Office Trivia</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="Assets/CSS/style.css">
-        <link rel="apple-touch-icon" sizes="180x180" href="Assets/images/icons/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="Assets/images/icons/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="Assets/images/icons/favicon-16x16.png">
-        <link rel="manifest" href="Assets/images/icons/site.webmanifest">
+<head>
+    <title>Office Trivia</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="Assets/CSS/style.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="Assets/images/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="Assets/images/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="Assets/images/icons/favicon-16x16.png">
+    <link rel="manifest" href="Assets/images/icons/site.webmanifest">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-    </head>
 
-    <body>
-        <div id="clock"></div>
-        <div class="container">
-            <div id="intro">
-                <div class="jumbotron">
-                        <h1 class="display-4 text-center">Office Trivia</h1>
-                        <p class="lead text-center">This is a simple trivia test about The Office TV show. When you click the play
-                            button,
-                            your timer will begin.</p>
-                        <hr class="my-4">
-                        <p class="lead">
-                            <a class="btn btn-primary btn-lg" href="#" role="button" id="playButton">Play!</a>
-                        </p>
-                    <div id="questions">
-                        <div class="row">
-                            <div class="col-md-12" id="questionText"></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <button class="answerButton" id="btn1"></button>
-                            </div>
-                            <div class="col-md-6">
-                                <button class="answerButton" id="btn2"></button>
-                            </div>
-                        </div>
-                        <br><br>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <button class="answerButton" id="btn3"></button>
-                            </div>
-                            <div class="col-md-6">
-                                <button class="answerButton" id="btn4"></button>
-                            </div>
-                        </div>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2 sidebarCont">
+                Time remaining: <br>
+                <div class="sidey" id="clock"></div>
+            </div>
+            <div class="col-md-8 mainContent">
+                <div class="row" id="topMenu">
+                    <div class="col-md-3">
+                        <button type="button" class="btn btn-primary menuButton" id="playButton">Play!</button>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <h1>Code Quiz</h1>
+                    </div>
+                    <div class="col-md-3">
+                        <button type="button" class="btn btn-primary menuButton" id="highScoresButton">High
+                            Scores</button>
                     </div>
                 </div>
+                <!--topMenu-->
+                <div class="row">
+                    <div class="col-md-12" id="questionText"></div>
+                </div>
+                <!--questionDiv-->
+                <div class="row" id="sneaky">
+                    <div class="row subsneaky">
+                        <div class="col-md-12 highscores">
+                            <form id='highscore-form' method='POST'>
+                                <label for='highscore-text'>Enter Initials:</label>
+                                <br>
+                                <input type='text' name='highscore-text' id='highscore-text' maxlength="3">
+                            </form>
+                        </div>
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 highscores">
+                            <p>Highscores:</p>
+                            <ul id='highscore-list'></ul>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+                <div class="row" id="buttonRow1">
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-primary answerButton text-center" id="btn1"></button>
+                    </div>
+                    <!--btn1 goes here-->
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-primary answerButton text-center" id="btn2"></button>
+                    </div>
+                    <!--btn2 goes here-->
+                </div>
+                <br>
+                <div class="row" id="buttonRow2">
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-primary answerButton text-center" id="btn3"></button>
+                    </div>
+                    <!--btn3 goes here-->
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-primary answerButton text-center" id="btn4"></button>
+                    </div>
+                    <!--btn4 goes here-->
+                </div>
+            </div>
+            <!--Big 10 Column-->
+            <div class="col-md-2 sidebarCont">
+                Your score: <br>
+                <div class="sidey text-center" id="score"></div>
             </div>
         </div>
+        <!--Giant Row-->
+    </div>
+</body>
 
-    </body>
-
-    <script src="questions.js"></script>
+<script src="questions.js"></script>
 
 </html>

@@ -316,7 +316,7 @@ highscoreList.addEventListener("click", function(event){
     if (element.matches("button") === true) {
         var index = element.parentElement.getAttribute("data-index");
         rankings.splice(index, 1);
-        // renderScores();
+        renderScores();
         saveScores();
     }
 })
@@ -338,9 +338,6 @@ function renderScores(){
     li.appendChild(deleteButton);
     highscoreList.appendChild(li);
     }
-
-
-renderScores();
 
 
 // var rankings = {
