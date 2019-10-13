@@ -8,16 +8,29 @@ button {
 
 #questionText {
     display: block;
-    min-height: 50vh;
+    min-height: 20vh;
+    text-align: center;
+    font-size: 24px;
+    margin-top: 20px;
 }
 
-.row {
+.mainContent {
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding-bottom: 20px;
+    margin-top: 20px;
+}
+
+.sidebarCont {
+    margin-top: 20px;
+}
+/* .row {
     border: 1px solid gray;
-}
+} */
 
-.col-md-1, .col-md-2, .col-md-6, .col-md-8, .col-md-10, .col-md-12 {
+/* .col-md-1, .col-md-2, .col-md-6, .col-md-8, .col-md-10, .col-md-12 {
     border: 1px solid blue;
-}
+} */
 
 .sidey {
     font-size: 32px;
@@ -34,17 +47,71 @@ button {
     text-align: center;
 }
 
-#hsbtn {
-    display: inline-block;
-    content: "submit";
-    height: 40px;
-    width: 40%;
-    margin: 0 auto;
+#playButton, #highScoresButton {
+    margin-top: 20px;
+}
+
+#clock, #score {
+    margin-top: 16px;
 }
 
 input {
     height: 40px;
-    width: 40%;
+    width: 10vw;
     margin: 0 auto;
 }
 
+.subsneaky {
+    width: 80% !important;
+    margin: 0 auto;
+}
+
+li {
+    width: 100%;
+    height: 40px;
+    background: #eee;
+    list-style: none;
+    font-family: monospace;
+    padding-left: 20px;
+    padding-top: 8px;
+    margin-bottom: 10px;
+}
+
+#highscore-list {
+    padding-left: 0 !important;
+}
+
+#highscore-text {
+    margin-top: 10px;
+}
+
+#highscore-form {
+    text-align: center;
+}
+
+#delete {
+    width: 20px;
+    height: 20px;
+    float: right;
+    text-align: center;
+    border: none;
+    background: #eee;
+}
+
+p {
+    text-align:center;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+input {
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+
+@media screen and (max-width: 1024px) {
+    #btn1, #btn3 {
+        margin-bottom: 20px;
+    }
+}

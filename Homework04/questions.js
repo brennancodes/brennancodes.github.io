@@ -1,5 +1,12 @@
 var playButton = document.getElementById("playButton");
-var restartButton = document.getElementById("restartButton");
+var highScoresButton = document.getElementById("highScoresButton");
+var sneaky = document.getElementById("sneaky");
+var highscoreText = document.querySelector("#highscore-text");
+var highscoreList = document.querySelector("#highscore-list");
+var highscoreForm = document.querySelector("#highscore-form");
+
+
+
 
 var questions = [
     {
@@ -31,7 +38,7 @@ var questions = [
 
 var correctGuess = 0;
 var incorrectGuess = 0;
-var timeFormula = ((questions.length * 5) - (incorrectGuess * 5));
+var timeFormula = ((questions.length * 10) - (incorrectGuess * 10));
 var timeLeft = timeFormula; //Gives 12 seconds for each question. 60 total seconds with 5 questions.
 var clockEl = document.getElementById("clock");
 var scoreEl = document.getElementById("score");
@@ -70,27 +77,39 @@ function runClock(){ //This function ticks the clock down one second at a time, 
     }
 }
 
+
 function endGame(){
     stopClock();
     timeLeft = timeLeft;
     clockEl.innerHTML = timeLeft;
     points = points;
     scoreEl.innerHTML = points;
-    qText.innerHTML = ("You finished with a final score of " + points + " points. <br> You got " + correctGuess + "/" + questions.length + " answers correct. <br> <input type='text' value='enter initials...'><button type='submit' id='hsbtn' value='submit'>");
+    qText.innerHTML = ("You finished with a final score of " + points + " points. <br> You got " + correctGuess + "/" + questions.length + " answers correct. <br>");
     btn1.style.display = "none";
     btn2.style.display = "none";
     btn3.style.display = "none";
     btn4.style.display = "none";
+    $("#sneaky").show();
 }
+
+$("#sneaky").hide();
+
+highScoresButton.addEventListener("click", function(){
+    $("#sneaky").toggle();
+    $("#questionText").toggle();
+});
 
 function decrement(){ //This function runs the runClock function on a 1s interval
     intervalId = setInterval(function(){
         runClock();
       }, 1000);
 
-}
+};
+
 
 playButton.addEventListener("click", function(){ //Clicking play clears the interval, starts the decrement function.
+    $("#sneaky").hide();
+    $("#questionText").show();
     if (timeLeft === 0) {
         restart();
     }
@@ -104,10 +123,6 @@ playButton.addEventListener("click", function(){ //Clicking play clears the inte
     }
 });
 
-highScoresButton.addEventListener("click", function(){
-    // qText.textContent =;
-});
-
 var btn1 = document.getElementById("btn1");
 var btn2 = document.getElementById("btn2");
 var btn3 = document.getElementById("btn3");
@@ -117,6 +132,7 @@ btn2.style.display = "none";
 btn3.style.display = "none";
 btn4.style.display = "none";
 var qText = document.getElementById("questionText");
+qText.textContent = "Press the 'Play!' button to begin.";
 
 
 function newQuestion(){
@@ -135,7 +151,6 @@ function questionUp(){
     q++;
 }
 
-//let's set a variable for the correct guess to reference later in our onclick functions
 function correctClick(){
     correctGuess++;
     points = (timeLeft * correctGuess);
@@ -151,7 +166,7 @@ function correctClickLast(){
 }
 function incorrectClick(){
     incorrectGuess++;
-    timeLeft = ((questions.length * 5) - (incorrectGuess * 5));
+    timeLeft = ((questions.length * 10) - (incorrectGuess * 10));
     clockEl.innerHTML = timeLeft
     points = (timeLeft * correctGuess);
     scoreEl.innerHTML = points;
@@ -160,7 +175,7 @@ function incorrectClick(){
 }
 function incorrectClickLast(){
     incorrectGuess++;
-    timeLeft = ((questions.length * 5) - (incorrectGuess * 5));
+    timeLeft = ((questions.length * 10) - (incorrectGuess * 10));
     clockEl.innerHTML = timeLeft
     points = (timeLeft * correctGuess);
     scoreEl.innerHTML = points;
@@ -224,9 +239,263 @@ btn4.addEventListener("click", function(){
     }
 });
 
+
+var userScore = {
+    name: "",
+    pts: "",
+}
+var rankings = [userScore];
+
+init();
+
+// function renderScores() {
+//     highscoreList.innerHTML = "";
+
+//     for (var i = 0; i < rankings.length; i++) {
+//         // userScore.name = highscoreText.value;
+//         // userScore.pts = points;
+//         // var name = userScore.name;
+//         // var pts = userScore.pts;
+//         var name = rankings[i].name;
+//         var pts = rankings[i].pts;
+
+//         // if(userScore.pts > rankings[i].pts){
+//         //     var index = element.parentElement.getAttribute("data-index");
+//         //     rankings.push(userScore);   
+//         // }
+
+//         var li = document.createElement("li");
+//         li.textContent = (name + " -- " + pts);
+//         li.setAttribute("data-index", i);
+
+//         var deleteButton = document.createElement("button");
+//         deleteButton.setAttribute("id", "delete");
+//         deleteButton.textContent = "x";
+
+//         li.appendChild(button);
+//         highscoreList.appendChild(li);
+//     }
+// }
+
+init();
+
+function init() {
+    var savedScores = JSON.parse(localStorage.getItem("rankings"));
+
+    if (savedScores !== null) {
+        rankings = savedScores;
+    }
+    renderScores();
+}
+
+function saveScores() {
+    localStorage.setItem("rankings", JSON.stringify(userScore));
+}
+
+highscoreForm.addEventListener("submit", function(event){
+    event.preventDefault();
+
+    userScore.name = highscoreText.value;
+    userScore.pts = points;
+
+    if (userScore.name === "") {
+        return;
+    }
+    else if (userScore.pts === 0) {
+        return;
+    }
+    highscoreText.value = "";
+    name.value = "";
+    points = 0;
+    saveScores();
+    renderScores();
+});
+
+highscoreList.addEventListener("click", function(event){
+    var element = event.target;
+    if (element.matches("button") === true) {
+        var index = element.parentElement.getAttribute("data-index");
+        rankings.splice(index, 1);
+        // renderScores();
+        saveScores();
+    }
+})
+
+function renderScores(){
+    highscoreList.innerHTML = "";
+    var savedScores = JSON.parse(localStorage.getItem("rankings"));
+    name = savedScores.name;
+    pts = savedScores.pts;
+    
+    var li = document.createElement("li");
+    li.textContent = (name + " -- " + pts);
+    // li.setAttribute("data-index", i);
+
+    var deleteButton = document.createElement("button");
+    deleteButton.setAttribute("id","delete");
+    deleteButton.textContent = "x";
+
+    li.appendChild(deleteButton);
+    highscoreList.appendChild(li);
+    }
+
+
+renderScores();
+
+
+// var rankings = {
+//     userInit: [],
+//     userPoints:[],
+// };
+
+// init();
+
+// function renderScores() {
+//     highscoreList.innerHTML = ""
+
+//     for (var i = 0; i < rankings.userInit.length; i++) {
+//         var inits = rankings.userInit[i];
+//         var pts = rankings.userPoints[i];
+
+//         var li = document.createElement("li");
+//         li.textContent = (inits + " -- " + pts);
+//         li.setAttribute("data-index", i);
+
+//         var deleteButton = document.createElement("button");
+//         deleteButton.setAttribute("id", "delete");
+//         deleteButton.textContent = "[x]";
+
+//         li.appendChild(deleteButton);
+//         highscoreList.appendChild(li);
+//     }
+// }
+
+// function sortScores() {
+//     rankings.userPoints = rankings.userPoints.sort((a, b) => b - a);
+// }
+// function init() {
+//     var savedScores = JSON.parse(localStorage.getItem("rankings"));
+
+//     if (savedScores !== null) {
+//         rankings = savedScores;
+//     }
+//     sortScores();
+//     renderScores();
+// }
+
+// function saveScores() {
+//     localStorage.setItem("rankings", JSON.stringify(rankings));
+// }
+
+// highscoreForm.addEventListener("submit", function(event){
+//     event.preventDefault();
+
+//     var userInit = highscoreText.value.trim();
+//     var userPts = points;
+
+//     if (userInit === "") {
+//         return;
+//     }
+//     else if (points === 0) {
+//         return;
+//     }
+
+//     rankings.userInit.push(userInit);
+//     rankings.userPoints.push(userPts);
+//     highscoreText.value = "";
+//     userInit.value = "";
+//     points = 0;
+//     saveScores();
+//     sortScores();
+//     renderScores();
+// });
+
+// highscoreList.addEventListener("click", function(event) {
+//     var element = event.target;
+//     if (element.matches("button") === true) {
+//         var index = element.parentElement.getAttribute("data-index");
+//         rankings.splice();
+//         saveScores();
+//         renderScores();
+//     }
+// })
+
+
+// var highscores = [];
+// var highPoints = [];
+// var rank = {
+// };
+
+// init();
+
+// function renderScores() {
+//     highscoreList.innerHTML = "";
+
+//     for (var i = 0; i < highscores.length; i++) {
+//         var hScore = highscores[i];
+
+//         var li = document.createElement("li");
+//         li.textContent = hScore;
+//         li.setAttribute("data-index", i);
+
+//         var deleteButton = document.createElement("button");
+//         deleteButton.setAttribute("id","delete");
+//         deleteButton.textContent = "[x]";
+
+//         li.appendChild(deleteButton);
+//         highscoreList.appendChild(li);
+//     }
+// }
+
+// function init() {
+//     var savedScores = JSON.parse(localStorage.getItem("highscores"));
+
+//     if (savedScores !== null) {
+//         highscores = savedScores;
+//     }
+//     renderScores();
+// }
+
+// function saveScores() {
+//     localStorage.setItem("highscores", JSON.stringify(highscores));
+// }
+
+// highscoreForm.addEventListener("submit", function(event){
+//     event.preventDefault();
+
+//     var userName = highscoreText.value.trim();
+
+//     if (userName === "") {
+//         return;
+//     }
+//     else if (points === 0) {
+//         return;
+//     }
+
+//     highscores.push(userName + " -- " + points);
+//     highscoreText.value = "";
+//     userName.value = "";
+//     points = 0;
+//     saveScores();
+//     renderScores();
+// });
+
+// highscoreList.addEventListener("click", function(event){
+//     var element = event.target;
+//     if (element.matches("button") === true) {
+//         var index = element.parentElement.getAttribute("data-index");
+//         highscores.splice(index, 1);
+//         saveScores();
+//         renderScores();
+//     }
+// })
+
+
+
 //For random question order:
 //Create an empty array. After displaying each question, push that question into the empty array.
 //At the top of newQuestion check the array for questions that have already been asked, if they're not in there, display it.
 
 //To do:
-//If incorrectGuess, lose time
+//Read up on localstorage, JSON.stringify, JSON.parse, etc. Learn how to project form entries to the HS list.
+//Maybe we should be creating an element on the endgame() state that includes the highscoreForm
