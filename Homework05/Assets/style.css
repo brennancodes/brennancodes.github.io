@@ -10,6 +10,8 @@ h2 {
     height: 60px;
     border-top: 1px solid gray;
     border-right: 2px solid gray;
+    padding-right: 0;
+    margin-right: 0;
 }
 
 .row1 {
@@ -18,10 +20,21 @@ h2 {
 }
 
 .hourOfDay {
+    height: 60px;
     border-right: 2px solid gray;
+    max-width: 90px;
+    font-family: monospace;
+    font-size: 12px;
+    padding-top: 20px;
+}
+
+.hourlyEvents {
+    height: 60px;
+    min-width: 80%;
 }
 
 .saveCol {
+    height: 60px;
     border-left: 2px solid gray;
     background-color: lightblue;
 }
@@ -84,6 +97,85 @@ textarea {
     background: transparent;
 }
 
-.container-fluid {
-    margin-bottom: 50px;
+.btn-primary {
+    margin: 0 auto;
+    margin-top: 15px;
+}
+
+.buttonrow {
+    border-right: none;
+}
+
+@media screen and (max-width: 991px) {
+    .container {
+        width: 95%;
+        margin: 0 auto;
+        padding: 0;
+    }
+    .hourOfDay {
+        width: 10%;
+        float: left;
+        margin: 0 auto;
+        padding: 0;
+    }
+    .hourlyEvents {
+        max-width: 70%;
+        float: left;
+        margin: 0 auto;
+        padding: 0;
+    }
+    .saveCol {
+        width: 10%;
+        float: left;
+        margin: 0 auto;
+        padding: 0;
+    }
+}
+@media screen and (max-width: 630px) {
+    .container {
+        width: 95%;
+        margin: 0 auto;
+        padding: 0;
+    }
+    .hourOfDay {
+        width: 15% !important;
+        float: left;
+        margin: 0 auto;
+        padding: 0;
+    }
+    .hourlyEvents {
+        min-width: 70% !important;
+        float: left;
+        margin: 0 auto;
+        padding: 0;
+    }
+    .saveCol {
+        width: 15% !important;
+        float: left;
+        margin: 0 auto;
+        padding: 0;
+    }
+}
+
+@media screen and (max-width: 432px) {
+    .container {
+        width: 100%;
+        margin: 0 auto;
+        padding: 0;
+    }
+    .hourOfDay {
+        width: 15%;
+        margin: 0 auto;
+        padding: 0;
+    }
+    .hourlyEvents {
+        width: 70%;
+        margin: 0 auto;
+        padding: 0;
+    }
+    .saveCol {
+        width: 15%;
+        margin: 0 auto;
+        padding: 0;
+    }
 }

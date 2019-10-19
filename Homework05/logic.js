@@ -1,3 +1,6 @@
+//Sets text into the necessary boxes
+renderText();
+
 //Sets h3 to display date&time
 var now = moment().format("LLLL");
 $("h3").text(now); 
@@ -42,14 +45,65 @@ for (var i = 0; i < 9; i++) {
         }
 }
 
-for (var i = 0; i < 9; i++) {
-    var userText = $(".text"+i);
-    var saveBtn = $(".save"+i);
-    var storedValue = localStorage.getItem(JSON.parse("savedText"+i, $(".text"=i).val()));
-
-    saveBtn.on("click", function(){
-        localStorage.setItem(JSON.stringify("savedText"+i, $(".text"+i).val()));
-    })
-
-    $(".text"+i).text(storedValue);
+//Function built to save the input text to localstorage when 
+function saveText() {
+    for (var i = 0; i < 9; i++) {
+    localStorage.setItem("userInput"+i, $(".text"+i).val());
+    }
 }
+
+function renderText() {
+    for (var i = 0; i < 9; i++) {
+        $(".text"+i).text(localStorage.getItem("userInput"+i));
+    }
+}
+
+var save0 = $(".save0");
+var save1 = $(".save1");
+var save2 = $(".save2");
+var save3 = $(".save3");
+var save4 = $(".save4");
+var save5 = $(".save5");
+var save6 = $(".save6");
+var save7 = $(".save7");
+var save8 = $(".save8");
+
+save0.on("click",function(){
+    localStorage.setItem("userInput0",$(".text0").val());
+});
+save1.on("click",function(){
+    localStorage.setItem("userInput1",$(".text1").val());
+});
+save2.on("click",function(){
+    localStorage.setItem("userInput2",$(".text2").val());
+});
+save3.on("click",function(){
+    localStorage.setItem("userInput3",$(".text3").val());
+});
+save4.on("click",function(){
+    localStorage.setItem("userInput4",$(".text4").val());
+});
+save5.on("click",function(){
+    localStorage.setItem("userInput5",$(".text5").val());
+});
+save6.on("click",function(){
+    localStorage.setItem("userInput6",$(".text6").val());
+});
+save7.on("click",function(){
+    localStorage.setItem("userInput7",$(".text7").val());
+});
+save8.on("click",function(){
+    localStorage.setItem("userInput8",$(".text8").val());
+});
+
+var saveAll = $(".saveAll");
+saveAll.on("click",function(){
+    saveText();
+    renderText();
+});
+
+var deleteAll = $(".deleteAll");
+deleteAll.on("click",function(){
+    localStorage.clear();
+    renderText();
+})
