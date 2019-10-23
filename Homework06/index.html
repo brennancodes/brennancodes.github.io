@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <title>Daily Planner</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="Assets/CSS/style.css">
+        <link rel="apple-touch-icon" sizes="180x180" href="Assets/images/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="Assets/images/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="Assets/images/favicon-16x16.png">
+        <link rel="manifest" href="Assets/images/site.webmanifest">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+    </head>
+
+    <body>
+        <header>
+                <nav class="navbar navbar-dark bg-dark text-center" style="background-color: #303030; color: white; border-radius: 0;">
+                    <h1>Weather Dashboard</h1>
+                </nav>
+        </header>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <form class="form-inline">
+                                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="searchBar">
+                                <button class="btn btn-primary my-2 my-sm-0" type="submit" id="submitButton">Search</button>
+                            </form>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div id="citiesDiv"></div> <!--City buttons go here-->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="row" id="weatherToday">
+                        <div class="col-lg-12">
+                            <div class="row"> <!--Are two consecutive rows redundant?-->
+                                <div class="col-lg-12 text-center"><h2>Current Weather</h2></div> <!--City Name Day/Date Here-->
+                            </div> 
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-6" id="tempContainer"></div> <!--Temp Here-->
+                                <div class="col-lg-6" id="humidContainer"></div> <!--Humidity Here-->
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6" id="windContainer"></div> <!--Wind Here-->
+                                <div class="col-lg-6" id="uvContainer"></div> <!--UV Index Here-->
+                            </div>
+                        </div> <!--Width container for weatherToday-->
+                    </div> <!--Container for that days weather-->
+                    <br>
+                    <div class="row" id="ForecastContainer">
+                        <div class="col-lg-12">
+                            <div class="row">
+                                <div class="col-lg-12 text-center"><h2>Five Day Forecast</h2></div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-12" id="forecastFive"></div> <!--Container for floating forecasts-->
+                            </div>
+                        </div> <!--Width container for ForecastContainer-->
+                    </div> <!--Container for five day ForecastContainer-->
+                </div>
+            </div> <!--Giant Row-->
+        </div>
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="weather.js"></script>
+    </body>
+</html>

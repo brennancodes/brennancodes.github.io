@@ -1,0 +1,70 @@
+.row {
+    border: 1px solid lightgray;
+}
+
+.col-lg-4 {
+    border: 1px solid lightcoral;
+}
+
+.col-lg-8 {
+    border: 1px solid lightcoral;
+}
+
+.col-lg-12 {
+    border: 1px solid lightblue;
+}
+
+hr { 
+    display: block; 
+    height: 1px;
+    border: 0; 
+    border-top: 1px solid #ccc;
+    margin: 0 0; 
+    padding: 0; 
+}
+
+.ffIcon {
+    height: 40px; 
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.ffDate {
+    display: inline-block;
+}
+
+.ffDiv0 {
+    width: 17.5%;
+    margin-right:2.5%;
+    margin-left:1.25%;
+    padding:1.25%;
+    float: left;
+    background:#848484;
+    color:white;
+    border-radius:5px;
+}
+
+.ffDiv1, .ffDiv2, .ffDiv3 {
+    width: 17.5%;
+    margin-right:2.5%;
+    padding:1.25%;
+    float: left;
+    background:#848484;
+    color:white;
+    border-radius:5px;
+}
+
+.ffDiv4 {
+    width: 17.5%;
+    margin-right:0;
+    padding:1.25%;
+    float: left;
+    background:#848484;
+    color:white;
+    border-radius:5px;
+
+}
+
+#submitButton {
+    background-color: #848484;
+}
