@@ -1,4 +1,4 @@
-.row {
+/* .row {
     border: 1px solid lightgray;
 }
 
@@ -12,6 +12,14 @@
 
 .col-lg-12 {
     border: 1px solid lightblue;
+} */
+
+.col-sm-3, #citiesDiv {
+    border: 1px solid coral;
+}
+
+body {
+    background: #ddd;
 }
 
 hr { 
@@ -27,11 +35,37 @@ hr {
     height: 40px; 
     display: inline-block;
     margin-bottom: 10px;
+    
 }
 
 .ffDate {
     display: inline-block;
 }
+
+.todayIcon {
+    height: 40px; 
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.todayDate {
+    display: inline-block;
+}
+
+/* .weatherTodayTitleRow {
+    background: #ccc;
+} */
+
+#uvText {
+    display: inline-block;
+}
+
+#uvVal {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+ 
 
 .ffDiv0 {
     width: 17.5%;
@@ -67,4 +101,18 @@ hr {
 
 #submitButton {
     background-color: #848484;
+}
+
+#searchBar {
+    width: 65%;
+}
+
+#searchBar, #submitButton {
+    margin-top: 10px;
+    margin-right: 10px;
+    float: left;
+}
+
+#submitButton {
+    float: left;
 }
