@@ -101,6 +101,7 @@ submitButton.on("click",function(event){
         })
         .then(function(response){
             console.log(forecastURL);
+            forecastFive.empty();
             for (var i = 0; i < 5; i++) { //Loops through API object
                 var ff = $("<div>"); //Creates a div each time
                 ff.attr("class","ffDiv"+[i]) //Adds class "ffDiv0" at index 0, "ffDiv1" at index 1, etc.
