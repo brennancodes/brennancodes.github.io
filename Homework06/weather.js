@@ -1,7 +1,3 @@
-// http://api.openweathermap.org/data/2.5/forecast?q=eagan,us&apikey=f24bd690f06d29af834e992daa589ebe
-// Above is an example of how to call the five day forecast for Eagan, MN. We can use variables to replace Eagan and US. 
-// For loop -> response.list[i].dt_txt returns the date for each one.
-
 var searchBar = $("#searchBar");
 var city = "";
 var forecastURL = "";
@@ -13,16 +9,15 @@ var cityList;
 var functionCalled = false;
 
 function getCities(){
-    if (localStorage.getItem("cityList")) {
+    if (localStorage.getItem("cityList")) { //If there is anything in localStorage, do the following:
         cityList = JSON.parse(localStorage.getItem("cityList"))
-        var lastCity = cityList[cityList.length-1].name;
-        var reloadCity = lastCity;
-        forecastURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + reloadCity +","+ country + "&units=imperial&apikey=f24bd690f06d29af834e992daa589ebe";
-        currentURL = "http://api.openweathermap.org/data/2.5/weather?q=" + reloadCity +","+ country + "&units=imperial&apikey=f24bd690f06d29af834e992daa589ebe";
+        var lastCity = cityList[cityList.length-1].name; //Sets the lastCity variable to be the last index of our localstorage, then uses it to get the correct API url
+        forecastURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + lastCity +","+ country + "&units=imperial&apikey=f24bd690f06d29af834e992daa589ebe";
+        currentURL = "http://api.openweathermap.org/data/2.5/weather?q=" + lastCity +","+ country + "&units=imperial&apikey=f24bd690f06d29af834e992daa589ebe";
         callWeather();
         callForecast();
     }
-    else {
+    else { //Default city is Eagan, my beloved hometown.
         cityList = [];
         city = "eagan";
         forecastURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + city +","+ country + "&units=imperial&apikey=f24bd690f06d29af834e992daa589ebe";
@@ -30,14 +25,14 @@ function getCities(){
         callWeather();
         callForecast();
     }
-    for (var i = 0; i < cityList.length; i++) {
+    for (var i = 0; i < cityList.length; i++) { //appends our localstorage items in the form of buttons when we reload the page.
             console.log(cityList[i].name);
             var citiesDiv = $("#citiesDiv");
             var cityButton = $("<button>").attr("data-value",cityList[i].name).text(cityList[i].name.charAt(0).toUpperCase() + cityList[i].name.slice(1));
             cityButton.attr("class","btn-primary cityButton").css("width","100%").css("padding","5px");
             citiesDiv.prepend(cityButton);
         }
-       $(".cityButton").on("click",function(){
+       $(".cityButton").on("click",function(){ //When we click any cityButton, the city variable becomes the text that is on it.
             console.log($(this).text());
             city = $(this).text();
             console.log(city);
@@ -50,7 +45,7 @@ function getCities(){
 
 getCities();
 
-function storeCity(){
+function storeCity(){ //Builds the interactive city buttons
     var citiesDiv = $("#citiesDiv");
     var cityButton = $("<button>").text(city.charAt(0).toUpperCase() + city.slice(1));
     cityButton.attr("class","btn-primary cityButton").attr("data-value",city).css("width","100%").css("padding","5px");
@@ -67,9 +62,7 @@ function storeCity(){
     });
 }
 
-// localStorage.setItem("cityList", JSON.stringify(cityList));
-
-function callWeather(){
+function callWeather(){ //Fills the current weather div at the top
     $.ajax({
         url: currentURL,
         method: "GET"
@@ -95,10 +88,10 @@ function callWeather(){
         var iconEl = $("<img>");
         iconEl.attr("src",iconURL);
         iconEl.attr("class","todayIcon");
-        if (city.length < 1) {
+        if (city.length < 1) { //If the city value is blank, use the last city in localStorage instead.
             var todayEl = $("<h2>").text(cityList[cityList.length-1].name.charAt(0).toUpperCase() + cityList[cityList.length-1].name.slice(1) + " " + date);
         }
-        else {
+        else { //Otherwise, use the intended city.
         var todayEl = $("<h2>").text(city.charAt(0).toUpperCase() + city.slice(1) + " " + date);
         }
         todayEl.attr("class","todayDate");
@@ -111,7 +104,7 @@ function callWeather(){
         tempContainer.append(tempEl);
         humidContainer.append(humidEl);
         windContainer.append(windEl);
-        $.ajax({
+        $.ajax({ //Fills the UV container using a different ajax call (from a different API).
             url: uvURL,
             method: "GET"
         })
@@ -144,7 +137,7 @@ function callWeather(){
     });
 }
 
-function callForecast(){
+function callForecast(){ //Creates the forecast elements and puts them in the forecastFive div in our HTML.
     $.ajax({
         url: forecastURL,
         method: "GET"
@@ -181,7 +174,7 @@ function callForecast(){
     });
 }
 
-submitButton.on("click",function(event){
+submitButton.on("click",function(event){ //When we submit a city, set the proper URL then make the ajax call(s).
     event.preventDefault();
     city = searchBar.val();
     forecastURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + city +","+ country + "&units=imperial&apikey=f24bd690f06d29af834e992daa589ebe";
@@ -192,12 +185,3 @@ submitButton.on("click",function(event){
     storeCity();
 
 });
-
-
-
-
-
-
-
-
-//in the emptyWeather function, we need to empty all text content and remove all appended/prepended elements, then place the function at the start of the callweather/forecast functions
