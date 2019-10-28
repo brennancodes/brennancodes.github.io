@@ -9,16 +9,16 @@ var currentURL = "";
 var submitButton = $("#submitButton");
 var country = "us";
 var forecastFive = $("#forecastFive");
-var cityList = [];
+var cityList;
 var functionCalled = false;
 
 function getCities(){
     if (localStorage.getItem("cityList")) {
         cityList = JSON.parse(localStorage.getItem("cityList"))
-        city = localStorage.getItem(cityList[0].name);
-        console.log(city);
-        forecastURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + city +","+ country + "&units=imperial&apikey=f24bd690f06d29af834e992daa589ebe";
-        currentURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city +","+ country + "&units=imperial&apikey=f24bd690f06d29af834e992daa589ebe";
+        var lastCity = cityList[cityList.length-1].name;
+        var reloadCity = lastCity;
+        forecastURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + reloadCity +","+ country + "&units=imperial&apikey=f24bd690f06d29af834e992daa589ebe";
+        currentURL = "http://api.openweathermap.org/data/2.5/weather?q=" + reloadCity +","+ country + "&units=imperial&apikey=f24bd690f06d29af834e992daa589ebe";
         callWeather();
         callForecast();
     }
@@ -31,12 +31,21 @@ function getCities(){
         callForecast();
     }
     for (var i = 0; i < cityList.length; i++) {
-            localStorage.getItem(cityList[i].name);
+            console.log(cityList[i].name);
             var citiesDiv = $("#citiesDiv");
-            var cityButton = $("<button>").text(cityList[i].name.charAt(0).toUpperCase() + cityList[i].name.slice(1));
+            var cityButton = $("<button>").attr("data-value",cityList[i].name).text(cityList[i].name.charAt(0).toUpperCase() + cityList[i].name.slice(1));
             cityButton.attr("class","btn-primary cityButton").css("width","100%").css("padding","5px");
             citiesDiv.prepend(cityButton);
         }
+       $(".cityButton").on("click",function(){
+            console.log($(this).text());
+            city = $(this).text();
+            console.log(city);
+            forecastURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + city +","+ country + "&units=imperial&apikey=f24bd690f06d29af834e992daa589ebe";
+            currentURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city +","+ country + "&units=imperial&apikey=f24bd690f06d29af834e992daa589ebe";
+            callWeather();
+            callForecast();
+        });
 }
 
 getCities();
@@ -50,17 +59,15 @@ function storeCity(){
     cityList.push(cityButtons);
     localStorage.setItem("cityList", JSON.stringify(cityList));
     cityButton.on("click",function(){
-        console.log("Hello");
-        console.log(cityButton.data("value"));
-        city = cityButton.data("value");
+        city = $(this).data("value");
         forecastURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + city +","+ country + "&units=imperial&apikey=f24bd690f06d29af834e992daa589ebe";
         currentURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city +","+ country + "&units=imperial&apikey=f24bd690f06d29af834e992daa589ebe";
         callWeather();
         callForecast();
-    })
+    });
 }
 
-localStorage.setItem("cityList", JSON.stringify(cityList));
+// localStorage.setItem("cityList", JSON.stringify(cityList));
 
 function callWeather(){
     $.ajax({
@@ -68,13 +75,9 @@ function callWeather(){
         method: "GET"
     })
     .then(function(response){
-        console.log(currentURL);
         var lat = response.coord.lat;
         var lon = response.coord.lon;
-        console.log(lon);
-        console.log(lat);
         var uvURL = "http://api.openweathermap.org/data/2.5/uvi/forecast?lat=" + lat + "&lon=" + lon + "&apikey=f24bd690f06d29af834e992daa589ebe";
-        console.log(uvURL);
         var tempContainer = $("#tempContainer");
         tempContainer.empty();
         var humidContainer = $("#humidContainer");
@@ -86,14 +89,18 @@ function callWeather(){
         var iconVar = response.weather[0].icon; //Isolates the icon image code for the chosen time slot
         var iconURL = "http://openweathermap.org/img/wn/" + iconVar + "@2x.png";
         var date = moment().format("l").slice(0,5);
-        console.log(date)
         var temp = response.main.temp.toFixed(0);
         var humid = response.main.humidity;
         var wind = response.wind.speed.toFixed(0);
         var iconEl = $("<img>");
         iconEl.attr("src",iconURL);
         iconEl.attr("class","todayIcon");
+        if (city.length < 1) {
+            var todayEl = $("<h2>").text(cityList[cityList.length-1].name.charAt(0).toUpperCase() + cityList[cityList.length-1].name.slice(1) + " " + date);
+        }
+        else {
         var todayEl = $("<h2>").text(city.charAt(0).toUpperCase() + city.slice(1) + " " + date);
+        }
         todayEl.attr("class","todayDate");
         todayEl.css("margin-left","10px")
         var tempEl = $("<h3>").text("Temp: " + temp + "° F");
@@ -104,7 +111,6 @@ function callWeather(){
         tempContainer.append(tempEl);
         humidContainer.append(humidEl);
         windContainer.append(windEl);
-        console.log (iconURL);
         $.ajax({
             url: uvURL,
             method: "GET"
@@ -144,7 +150,6 @@ function callForecast(){
         method: "GET"
     })
     .then(function(response){
-        console.log(forecastURL);
         forecastFive.empty();
         for (var i = 0; i < 5; i++) { //Loops through API object
             var ff = $("<div>"); //Creates a div each time
