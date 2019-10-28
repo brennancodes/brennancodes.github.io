@@ -26,16 +26,13 @@ function getCities(){
         callForecast();
     }
     for (var i = 0; i < cityList.length; i++) { //appends our localstorage items in the form of buttons when we reload the page.
-            console.log(cityList[i].name);
             var citiesDiv = $("#citiesDiv");
             var cityButton = $("<button>").attr("data-value",cityList[i].name).text(cityList[i].name.charAt(0).toUpperCase() + cityList[i].name.slice(1));
             cityButton.attr("class","btn-primary cityButton").css("width","100%").css("padding","5px");
             citiesDiv.prepend(cityButton);
         }
        $(".cityButton").on("click",function(){ //When we click any cityButton, the city variable becomes the text that is on it.
-            console.log($(this).text());
             city = $(this).text();
-            console.log(city);
             forecastURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + city +","+ country + "&units=imperial&apikey=f24bd690f06d29af834e992daa589ebe";
             currentURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city +","+ country + "&units=imperial&apikey=f24bd690f06d29af834e992daa589ebe";
             callWeather();
