@@ -12,16 +12,16 @@ function getCities(){
     if (localStorage.getItem("cityList")) { //If there is anything in localStorage, do the following:
         cityList = JSON.parse(localStorage.getItem("cityList"))
         var lastCity = cityList[cityList.length-1].name; //Sets the lastCity variable to be the last index of our localstorage, then uses it to get the correct API url
-        forecastURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + lastCity +","+ country + "&units=imperial&apikey=f24bd690f06d29af834e992daa589ebe";
-        currentURL = "http://api.openweathermap.org/data/2.5/weather?q=" + lastCity +","+ country + "&units=imperial&apikey=f24bd690f06d29af834e992daa589ebe";
+        forecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + lastCity +","+ country + "&units=imperial&apikey=f24bd690f06d29af834e992daa589ebe";
+        currentURL = "https://api.openweathermap.org/data/2.5/weather?q=" + lastCity +","+ country + "&units=imperial&apikey=f24bd690f06d29af834e992daa589ebe";
         callWeather();
         callForecast();
     }
     else { //Default city is Eagan, my beloved hometown.
         cityList = [];
         city = "eagan";
-        forecastURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + city +","+ country + "&units=imperial&apikey=f24bd690f06d29af834e992daa589ebe";
-        currentURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city +","+ country + "&units=imperial&apikey=f24bd690f06d29af834e992daa589ebe";
+        forecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city +","+ country + "&units=imperial&apikey=f24bd690f06d29af834e992daa589ebe";
+        currentURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city +","+ country + "&units=imperial&apikey=f24bd690f06d29af834e992daa589ebe";
         callWeather();
         callForecast();
     }
@@ -33,8 +33,8 @@ function getCities(){
         }
        $(".cityButton").on("click",function(){ //When we click any cityButton, the city variable becomes the text that is on it.
             city = $(this).text();
-            forecastURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + city +","+ country + "&units=imperial&apikey=f24bd690f06d29af834e992daa589ebe";
-            currentURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city +","+ country + "&units=imperial&apikey=f24bd690f06d29af834e992daa589ebe";
+            forecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city +","+ country + "&units=imperial&apikey=f24bd690f06d29af834e992daa589ebe";
+            currentURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city +","+ country + "&units=imperial&apikey=f24bd690f06d29af834e992daa589ebe";
             callWeather();
             callForecast();
         });
@@ -52,8 +52,8 @@ function storeCity(){ //Builds the interactive city buttons
     localStorage.setItem("cityList", JSON.stringify(cityList));
     cityButton.on("click",function(){
         city = $(this).data("value");
-        forecastURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + city +","+ country + "&units=imperial&apikey=f24bd690f06d29af834e992daa589ebe";
-        currentURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city +","+ country + "&units=imperial&apikey=f24bd690f06d29af834e992daa589ebe";
+        forecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city +","+ country + "&units=imperial&apikey=f24bd690f06d29af834e992daa589ebe";
+        currentURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city +","+ country + "&units=imperial&apikey=f24bd690f06d29af834e992daa589ebe";
         callWeather();
         callForecast();
     });
@@ -67,7 +67,7 @@ function callWeather(){ //Fills the current weather div at the top
     .then(function(response){
         var lat = response.coord.lat;
         var lon = response.coord.lon;
-        var uvURL = "http://api.openweathermap.org/data/2.5/uvi/forecast?lat=" + lat + "&lon=" + lon + "&apikey=f24bd690f06d29af834e992daa589ebe";
+        var uvURL = "https://api.openweathermap.org/data/2.5/uvi/forecast?lat=" + lat + "&lon=" + lon + "&apikey=f24bd690f06d29af834e992daa589ebe";
         var tempContainer = $("#tempContainer");
         tempContainer.empty();
         var humidContainer = $("#humidContainer");
@@ -77,7 +77,7 @@ function callWeather(){ //Fills the current weather div at the top
         var weatherTodayTitle = $("#weatherTodayTitle");
         weatherTodayTitle.empty();
         var iconVar = response.weather[0].icon; //Isolates the icon image code for the chosen time slot
-        var iconURL = "http://openweathermap.org/img/wn/" + iconVar + "@2x.png";
+        var iconURL = "https://openweathermap.org/img/wn/" + iconVar + "@2x.png";
         var date = moment().format("l").slice(0,5);
         var temp = response.main.temp.toFixed(0);
         var humid = response.main.humidity;
@@ -146,7 +146,7 @@ function callForecast(){ //Creates the forecast elements and puts them in the fo
             ff.attr("class","ffDiv"+[i]) //Adds class "ffDiv0" at index 0, "ffDiv1" at index 1, etc.
             var date = response.list[((8*[i])+6)].dt_txt.slice(5,10); //Prints only month and day of date
             var iconVar = response.list[((8*[i])+6)].weather[0].icon; //Isolates the icon image code for the chosen time slot
-            var iconURL = "http://openweathermap.org/img/wn/" + iconVar + "@2x.png"; //plugs the image code in to find the URL to reference it
+            var iconURL = "https://openweathermap.org/img/wn/" + iconVar + "@2x.png"; //plugs the image code in to find the URL to reference it
             var temp = response.list[((8*[i])+6)].main.temp.toFixed(0); //Prints temp for selected time
             var humid = response.list[((8*[i])+6)].main.humidity; //Prints humidity ""
             var wind = response.list[((8*[i])+6)].wind.speed.toFixed(0); //Prints wind speed ""
@@ -174,8 +174,8 @@ function callForecast(){ //Creates the forecast elements and puts them in the fo
 submitButton.on("click",function(event){ //When we submit a city, set the proper URL then make the ajax call(s).
     event.preventDefault();
     city = searchBar.val();
-    forecastURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + city +","+ country + "&units=imperial&apikey=f24bd690f06d29af834e992daa589ebe";
-    currentURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city +","+ country + "&units=imperial&apikey=f24bd690f06d29af834e992daa589ebe";
+    forecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city +","+ country + "&units=imperial&apikey=f24bd690f06d29af834e992daa589ebe";
+    currentURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city +","+ country + "&units=imperial&apikey=f24bd690f06d29af834e992daa589ebe";
 
     callWeather();
     callForecast();
