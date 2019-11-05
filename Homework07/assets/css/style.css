@@ -1,0 +1,289 @@
+body {
+    font: 20px Montserrat, sans-serif;
+    line-height: 1.8;
+    background: #007bff;
+    background: linear-gradient(to right, #0062E6, #33AEFF);
+  }
+  p {font-size: 16px;}
+  .margin {margin-bottom: 45px;}
+  .bg-1 { 
+    background: linear-gradient(to right, #0062E6, #33AEFF);
+
+    color: #ffffff;
+  }
+  /*.bg-2 { 
+    background-color: #474e5d; /* Dark Blue */
+    /*color: #ffffff;*/
+  
+  .bg-3 { 
+    background-color: #ffffff; /* White */
+    color: #555555;
+  }
+  .bg-4 { 
+    background-color: #2f2f2f; /* Black Gray */
+    color: #fff;
+  }
+  .container-fluid {
+    padding-top: 15px;
+    /* padding-bottom: 85px; */
+  }
+  .navbar {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: 0;
+    border-radius: 0;
+    margin-bottom: 0;
+    font-size: 12px;
+    letter-spacing: 5px;
+    height:100px
+  }
+
+
+  .navbar-nav  li a:hover {
+    color: #1abc9c !important;
+  }
+
+#logo {
+    height: 95px;
+    width: 70px;
+    padding-bottom: 30px;    
+    display: inline-block;
+}
+
+
+table, th, td {
+  border: 1px solid black;
+}
+
+
+
+.percentage:after {
+  content: "";
+  display: block;
+  background-color: #3d9970;
+}
+.percentage-20:after {
+  width: 20%;
+}
+.percentage-30:after {
+  width: 30%;
+}
+
+#sticky-footer {
+ /* flex-shrink: none;*/
+  background-color: whitesmoke;
+
+  width: 100%;
+  bottom: 0px;
+  position: fixed;
+  left: 0;
+  text-align: center;
+
+}
+
+.submitBtn {
+  background-color: #007bff;
+  color: white;
+}
+
+.alex-cards {
+  color: white;
+}
+
+.alex-cards img:hover {
+  cursor: pointer;
+}
+
+.box1, .box2, .box5, .box6 {
+  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto; 
+  margin-bottom: 15px;
+  background-color: deepskyblue;
+  /* width: 800px; */
+  /* padding: 50px; */
+  /* margin: 10px; */
+  box-align : center;
+  padding:15px;
+  /* width: 800px; */
+  /* padding: 50px; */
+  /*margin: 20px;*/
+  box-shadow: 10px 10px 5px dimgrey;
+  border-radius: 8px;
+  -webkit-animation-name: slide;
+  -webkit-animation-duration: 1.2s;
+  animation-name: slide;
+  animation-duration: 1.2s;
+}
+
+@-webkit-keyframes slide {
+  0% {margin-top: 100%;}
+  25% {margin-top: 100%; opacity: 0;}
+  50% {opacity: .5;}
+  80% {margin-top: -10px; opacity: .8;}
+  100% {margin-top: 0; opacity: 1;}
+}
+
+@keyframes slide {
+  0% {margin-top: 100%;}
+  25% {margin-top: 100%; opacity: 0;}
+  50% {opacity: .5;}
+  80% {margin-top: -10px; opacity: .8;}
+  100% {margin-top: 0; opacity: 1;}
+}
+
+/* .box5 {
+  margin-bottom: 100px;
+} */
+
+.footerIcons{
+
+  padding-left: 20px ;
+  padding-right: 20px;
+  margin: 10px;
+
+}
+
+#nameInput {
+  margin-top: 10px;
+}
+
+.hello { 
+  margin-top: 10px;
+}
+
+.soberInput {
+  width: 70px;
+  display: inline-block;
+}
+h3 {
+  margin: 0 auto;
+}
+input {
+  color: gray;
+}
+
+#soberSubmit{
+  background-color: #007bff;
+  color: whitesmoke;
+}
+
+.submitBtn {
+  color: white;
+}
+
+.navbar{
+  background-color:whitesmoke;
+  text-align: center;
+}
+
+.box3, .box4{
+
+  background-color: teal;
+  width: 1000px;
+  border: 10px black;
+  padding: 50px;
+  margin: 10px;
+  box-align : center;
+  height: 500px;
+  border: 5px black;
+  padding: 50px;
+  /*margin: 20px;*/
+}
+
+#chart-container {
+  margin: 0 auto;
+}
+
+#myChart {
+  height: 500px !important;
+}
+
+.smiley1:hover, .smiley2:hover {
+  cursor: pointer;
+}
+
+.checkInBox {
+  width: 50%;
+}
+
+h1 {
+  text-shadow:2px 2px 5px lightsteelblue;
+}
+
+.jumbotron {
+  background: linear-gradient(to right, #0062E6, #33AEFF);
+}
+#settings{
+  float: right;
+  font-size: 50px;
+  padding-bottom:20px;
+  padding-right: 10px;
+  cursor: pointer;
+  }
+
+  .music-button {
+    margin-bottom: 100px;
+  }
+
+@media screen and (max-width: 768px) {
+  .checkInBox {
+    width: 75%;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .checkInBox {
+    width: 100%;
+  }
+  #yInput {
+    width: 80px;
+    margin: 0 auto;
+  }
+  .footerIcons {
+    padding: 10px;
+    margin: 0 auto;
+  }
+  #soberSubmit {
+    font-size: 16px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 10px;
+  }
+  #logo {
+    position: absolute;
+    height: 60px;
+    width: 60px;
+    top: 0;
+    left: 0;
+    padding: 0;
+  }
+  #settings {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    padding: 0;
+  }
+
+  h1 {
+    font-size: 26px;
+    letter-spacing: -.1em;
+    margin-right: 8% !important;
+  }
+
+  /* Better accommodates phones so there's not two layers of smileys */
+  .smiley1, .smiley2 {
+    font-size: 45px !important;
+  }
+
+  /* Prevents the cats from creating a horizontal scroll necessity */
+  img {
+    max-width: 90vw !important;
+  }
+
+  h2 {
+    font-size: 26px;
+  }
+
+}
+
