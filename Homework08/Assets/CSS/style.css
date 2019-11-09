@@ -14,6 +14,23 @@ body {
     visibility: visible;
 }
 
+.porticonl {
+    margin-left: 10px;
+}
+.porticonr {
+    margin-right: 10px;
+}
+h3 {
+    cursor: default;
+}
+
+.porticonr, .porticonl {
+    margin-top: -4px;
+    z-index: 999;
+    cursor: pointer;
+}
+
+
 .prof {
     background: url(../images/student.png);
     background-size: 70px;
@@ -34,6 +51,36 @@ body {
     background-size: 70px;
     width: 70px;
     height: 70px;
+}
+
+.linkedIn, .github {
+    margin-left: 10px;
+}
+
+.contact-icon {
+    height: 32px;
+}
+
+.left-side {
+    min-height: 60vh;
+    margin-bottom: 20px;
+}
+
+.phone-background {
+    height: 97%;
+    background-image: url("../images/bottle.jpg");
+    background-size: 1200px;
+    background-position: 800px -100px;
+    margin-bottom: 20px !important;
+}
+
+
+.linkedIn, .github, .resumeicon {
+    cursor: pointer;
+}
+
+.github:hover, .linkedIn:hover, .resumeicon:hover {
+    border-bottom: 2px solid #4aaaa5;
 }
 
 html {
@@ -104,6 +151,18 @@ h2 {
     flex-direction: column;
     justify-content: space-between;
   }
+
+.pcontact {
+    line-height: 32px;
+    text-align: right;
+}
+
+/* .vert {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align:
+} */
 
 .footer {
     margin-top: 20px;
@@ -270,27 +329,27 @@ li > a:hover {
 
 /* Floaty Backgrounds */  
 #floaty1 {
-    background-image: url('../images/f-enter.jpg');
+    background-image: url('../images/tpp.png');
     background-size: 500px; /* Adjusting size effectively zooms in/out. Smaller size = bigger zoom. */
-    background-position: -70px 170px; /* Negative first value pulls left, positive second value pulls down. */
+    background-position: -70px -70px; /* Negative first value pulls left, positive second value pulls down. */
 }
 
 #floaty2 {
-    background-image: url('../images/f-gear.jpg');
-    background-size: 750px; /* Adjusting size effectively zooms in/out. Smaller size = bigger zoom. */
-    background-position: -187px 0px; /* Negative first value pulls left, positive second value pulls down. */
+    background-image: url('../images/pwdgen.png');
+    background-size: 400px; /* Adjusting size effectively zooms in/out. Smaller size = bigger zoom. */
+    background-position: -24px -10px; /* Negative first value pulls left, positive second value pulls down. */
 }
 
 #floaty3 {
-    background-image: url('../images/f-code.jpg');
-    background-size: 500px; /* Adjusting size effectively zooms in/out. Smaller size = bigger zoom. */
-    background-position: -80px 0px; /* Negative first value pulls left, positive second value pulls down. */
+    background-image: url('../images/dp.png');
+    background-size: 360px; /* Adjusting size effectively zooms in/out. Smaller size = bigger zoom. */
+    background-position: 0px 0px; /* Negative first value pulls left, positive second value pulls down. */
 }
 
 #floaty4 {
-    background-image: url('../images/f-icons.jpg');
+    background-image: url('../images/wd.png');
     background-size: 350px; /* Adjusting size effectively zooms in/out. Smaller size = bigger zoom. */
-    background-position: 0px 0px; /* Negative first value pulls left, positive second value pulls down. */
+    background-position: 0px -22px; /* Negative first value pulls left, positive second value pulls down. */
 }
 
 #floaty5 {
