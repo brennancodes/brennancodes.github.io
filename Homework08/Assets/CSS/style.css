@@ -444,7 +444,6 @@ textarea {
     header {
         height: 150px;
     }
-
     .navbar {
         max-width: 992px;
         width: 100%;
@@ -455,8 +454,7 @@ textarea {
     .nav-words {
         visibility: hidden;
         display: none;
-    }
-    
+    } 
     .sneaky {
         visibility: visible;
         display: flex;
