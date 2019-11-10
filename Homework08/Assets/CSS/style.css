@@ -15,8 +15,8 @@ body {
 }
 
 .smallscreen {
-    visibility: hidden;
-    display: none;
+    visibility: hidden !important;
+    display: none !important;
 }
 
 .nav-words {
@@ -410,12 +410,12 @@ textarea {
         background-position: -90px -20px;
     }
     .bigscreen {
-        visibility: hidden;
-        display: none;
+        visibility: hidden !important;
+        display: none !important;
     }
     .smallscreen {
-        visibility: visible;
-        display: block;
+        visibility: visible !important;
+        display: block !important;
     }
     body {
         font-size: 2em;
