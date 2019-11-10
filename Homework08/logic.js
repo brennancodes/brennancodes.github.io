@@ -67,7 +67,7 @@ $(".linkedIn").on("click",function(){
 $(".github").on("click",function(){
     window.open(githubURL);
 })
-$(".resume").on("click",function(){
+$(".resumeicon").on("click",function(){
     window.open(resume);
 })
 // $("#floaty5").on("click",function(){
