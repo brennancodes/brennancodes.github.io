@@ -13,7 +13,7 @@ var dpURL = "https://github.com/brennancodes/brennancodes.github.io/tree/master/
 var wdURL = "https://github.com/brennancodes/brennancodes.github.io/tree/master/Homework06"
 
 //PDF Link
-var resume = "Assets/pdf/BS_Resume.pdf"
+var resume = "https://brennancodes.github.io/Homework08/Assets/pdf/BS_Resume.pdf"
 
 //Peace Project Links
 $(".githubtpp").on("click",function(){
@@ -66,6 +66,9 @@ $(".linkedIn").on("click",function(){
 
 $(".github").on("click",function(){
     window.open(githubURL);
+})
+$(".resume").on("click",function(){
+    window.open(resume);
 })
 // $("#floaty5").on("click",function(){
 //     window.open();
