@@ -10,7 +10,16 @@ body {
     visibility: hidden;
 }
 
-.float-right {
+.squish {
+    margin-left: 15px;
+}
+
+.smallscreen {
+    visibility: hidden;
+    display: none;
+}
+
+.nav-words {
     visibility: visible;
 }
 
@@ -147,7 +156,7 @@ h2 {
 
 .flex-wrapper {
     display: flex;
-    min-height: 100vh;
+    min-height: 100vh !important;
     flex-direction: column;
     justify-content: space-between;
   }
@@ -381,13 +390,32 @@ textarea {
     cursor: pointer;
 }
 
+.contact-icon {
+    margin-left: 10px;
+}
+
 @media screen and (max-width: 992px) {
+    .contact-icon {
+        margin-left: 10px;
+        margin-top: -20px;
+    }
+    .phone-background {
+        display: none;
+    }
     #floaty1 {
         background-size: 400px;
         background-position: -90px -60px;
     }
     #floaty5 {
         background-position: -90px -20px;
+    }
+    .bigscreen {
+        visibility: hidden;
+        display: none;
+    }
+    .smallscreen {
+        visibility: visible;
+        display: block;
     }
     body {
         font-size: 2em;
@@ -406,12 +434,12 @@ textarea {
         max-height: 150px;
     }
     h1 {
-        font-size: 2.5em;
+        font-size: 2em;
         margin: 0 auto;
         text-align: center;
     }
     h2 {
-        font-size: 2em;
+        font-size: 1.8em;
     }
     header {
         height: 150px;
@@ -424,7 +452,7 @@ textarea {
         padding: 0;
         padding-top: 20px;
     }
-    .float-right {
+    .nav-words {
         visibility: hidden;
         display: none;
     }
@@ -462,12 +490,9 @@ textarea {
         margin: 0 auto;
     }
     #floaty1, #floaty2, #floaty3, #floaty4, #floaty5 {
-        background-size: 900px;
+        background-size: 100%;
         background-position: 0 0;
         min-height: 300px;
-    }
-    #floaty1 {
-        background-position: -20px -200px;
     }
     #floaty5 {
         background-position: 0 400px;
@@ -507,7 +532,7 @@ textarea {
     .img-fluid {
         max-width: 33.33% !important;
     }
-    .float-right {
+    .nav-words {
         display: none !important;
     }
     .nav-link {
@@ -540,7 +565,7 @@ textarea {
     }
 }
 
-@media screen and (max-width: 587px) {
+@media screen and (max-width: 597px) {
     header {
         min-width: 587px;
     }
@@ -555,5 +580,6 @@ textarea {
     }
     .footer {
         min-width: 587px;
+        margin-top: 100%;
     }
 }
