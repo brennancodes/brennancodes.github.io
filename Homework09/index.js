@@ -1,7 +1,8 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 const util = require("util");
-var gs = require('github-scraper');
+const gs = require('github-scraper');
+const pdf = require('html-pdf');
 const writeFileAsync = util.promisify(fs.writeFile);
 
 
@@ -143,23 +144,23 @@ function generateHTML(answers, data) {
         </body>`;
   }
 
-promptUser()
-.then(function(answers) {
-    console.log(answers);
-    var url = answers.github
-    gs(url, function(err, data) {
-    if (err) {
-        throw err;
-    }
-    console.log(data); // or what ever you want to do with the data
-    const html = generateHTML(answers, data);
-    return writeFileAsync("index.html", html);
-    })
 
-  })
-  .then(function() {
-    console.log("Successfully wrote to index.html");
-  })
-  .catch(function(err) {
-    console.log(err);
-  });
+promptUser()
+  .then(function (answers) {
+      console.log(answers);
+      var url = answers.github
+      gs(url, function(err, data) {
+        if (err) {
+            throw err;
+        }
+      console.log(data);
+      const html = generateHTML(answers, data);
+      return writeFileAsync("index.html", html);
+      })
+    })
+    .then(function() {
+      console.log("Successfully wrote to index.html");
+    })
+    .catch(function(err) {
+      console.log(err);
+    });
