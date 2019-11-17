@@ -1,0 +1,15 @@
+{
+  "name": "homework09",
+  "version": "1.0.0",
+  "description": "package",
+  "main": "index.js",
+  "dependencies": {
+    "acorn": "^7.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "brennancodes",
+  "license": "ISC"
+}
