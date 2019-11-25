@@ -55,7 +55,8 @@ function beginEmployee(){
             name: "email",
             message: "What is the employee's e-mail address?"
         }
-    ]).then(function(){
+    ]).then(function(answers){
+        console.log(answers.name + answers.id + answers.email);
         selectEmployee();
     });
 }
@@ -91,7 +92,7 @@ createManager();
 // Where the magic ends :(
 
 class Employee {
-    constructor(name, id, title) {
+    constructor(name, id, title, email) {
     this.name = name;
     this.id = id;
     this.title = title;
@@ -111,10 +112,13 @@ class Employee {
     }
 }
 
+//Manager
+//Office Number
+// getRole()
 class Manager extends Employee {
-    constructor(name, officeNum) {
-        super(name, id)
-        this.title = "Manager";
+    constructor(name, id, email, officeNum) {
+        super(name, id, "Manager", email)
+        this.email = email;
         this.officeNum = officeNum;
     }
     getRole(){
@@ -122,16 +126,32 @@ class Manager extends Employee {
     }
 }
 
-//Manager
-//Office Number
-// getRole()
-
 // Engineer
 // github username
 // getGithub()
 // getRole()
+class Engineer extends Employee {
+    constructor(name, id, email, github) {
+        super(name, id, "Engineer", email)
+        this.email = email;
+        this.github = github;
+    }
+    getGithub(){
+        console.log(`Github: ${this.github}`);
+    }
+    getRole(){
+        console.log(`Title: ${this.title}`);
+    }
+}
 
 // Intern
 // school name
 // getSchool()
 // getRole()
+class Intern extends Employee {
+    constructor(name, id, email, school) {
+        super(name, id, "Intern", email)
+        this.email = email;
+        this.school = school;
+    }
+}
