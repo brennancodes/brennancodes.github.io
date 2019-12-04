@@ -28,6 +28,7 @@ var saveNote = function(note) {
 var deleteNote = function(id) {
   return $.ajax({
     url: "api/notes/" + id,
+    data: "id="+ id,
     method: "DELETE"
   });
 };
@@ -36,7 +37,7 @@ var deleteNote = function(id) {
 var renderActiveNote = function() {
   $saveNoteBtn.hide();
 
-  if (activeNote.id) {
+  if (activeNote.id || activeNote.id === 0) {
     $noteTitle.attr("readonly", true);
     $noteText.attr("readonly", true);
     $noteTitle.val(activeNote.title);
@@ -67,15 +68,13 @@ var handleNoteDelete = function(event) {
   // prevents the click listener for the list from being called when the button inside of it is clicked
   event.stopPropagation();
 
-  var note = $(this)
-    .parent(".list-group-item")
-    .data();
+  var note = $(this).parent().attr("id");
 
-  if (activeNote.id === note.id) {
+
+  if (activeNote.id === note) {
     activeNote = {};
   }
-
-  deleteNote(note.id).then(function() {
+  deleteNote(note).then(function() {
     getAndRenderNotes();
     renderActiveNote();
   });
@@ -83,8 +82,11 @@ var handleNoteDelete = function(event) {
 
 // Sets the activeNote and displays it
 var handleNoteView = function() {
-  activeNote = $(this).data();
-  renderActiveNote();
+  var idPlaceholder = $(this).attr("id")
+  getNotes().then(function(data) {
+    activeNote = data[idPlaceholder];
+    renderActiveNote();
+  });
 };
 
 // Sets the activeNote to and empty object and allows the user to enter a new note
@@ -106,13 +108,11 @@ var handleRenderSaveBtn = function() {
 // Render's the list of note titles
 var renderNoteList = function(notes) {
   $noteList.empty();
-
   var noteListItems = [];
-
   for (var i = 0; i < notes.length; i++) {
     var note = notes[i];
 
-    var $li = $("<li class='list-group-item'>").data(note);
+    var $li = $("<li class='list-group-item' id='" + note.id + "'>");
     var $span = $("<span>").text(note.title);
     var $delBtn = $(
       "<i class='fas fa-trash-alt float-right text-danger delete-note'>"
