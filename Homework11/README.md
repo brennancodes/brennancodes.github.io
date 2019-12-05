@@ -11,7 +11,7 @@ On the homepage, the user must click "Get Started" to be taken to the notetaking
 Once a note is added to the sidebar, a red delete icon will appear. Clicking on that icon will delete it from the sidebar (and the server) and it will no longer be visible or accessible to the user. 
 
 ### Process
-
+The application uses "get" methods to gather information from the db.json file stored on the server and set up routes to the index.html file and the notes.html file. It uses a post function to add notes to the db.json file by pushing the new note into an existing array of notes. Each time a note is pushed, it is assigned an id based on the length of the existing array BEFORE the new note is added. This means if there are no notes, when we push our first one, it will have an id of "0". We use the writeNotes function to stringify the json and then rewrite it. We also use a delete method to delete a specific index of the array by splicing it out, then reassigning all id's inside the array. This ensures that if, for example, we have 3 notes, and the 2nd one (id = 1) is deleted, the id's will reassign so that the last index is still 1 even though we just deleted an index with that id.
 
 ---
 
