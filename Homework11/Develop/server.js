@@ -25,13 +25,7 @@ app.post("/api/notes", function(req, res) {
   const newNote = req.body;
   newNote.id = notes.length;
   notes.push(newNote);
-  let stringifiedNotes = JSON.stringify(notes);
-  fs.writeFile("db/db.json", stringifiedNotes, function(err) {
-    if(err) {
-        return console.log(err);
-    }
-    console.log("The file was saved!");
-  });
+  writeNotes();
   res.json(newNote);
 });
 //delete
@@ -42,15 +36,20 @@ app.delete("/api/notes/:id", function(req, res) {
   for(let i = 0; i < notes.length; i++){
     notes[i].id = i;
   }
-  let stringifiedNotes = JSON.stringify(notes);
-  fs.writeFile("db/db.json", stringifiedNotes, function(err) {
-    if(err) {
-        return console.log(err);
-    }
-    console.log("The file was deleted!");
-  });
+  writeNotes();
   res.sendFile(path.join(__dirname, "public/notes.html"));
 });
+
+function writeNotes(){
+    let stringifiedNotes = JSON.stringify(notes);
+    fs.writeFile("db/db.json", stringifiedNotes, function(err) {
+        if(err) {
+            return console.log(err);
+        }
+        console.log("The file has been updated.")
+    });
+}
+
 app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });  
