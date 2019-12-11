@@ -1,10 +1,19 @@
+//==========================================================================================================================================
+//==Variables and required packages=========================================================================================================
+//==========================================================================================================================================
+
 const mysql = require("mysql");
 const inquirer = require("inquirer");
-var employeeArray = ["No Manager"];
+var employeeArray = [];
+var managerArray = ["No Manager"];
 var roleArray = [];
 var query;
 var mID;
 var rID;
+
+//==========================================================================================================================================
+//==Establishing Connection=================================================================================================================
+//==========================================================================================================================================
 
 var connection = mysql.createConnection({
     host: "localhost",
@@ -19,24 +28,31 @@ connection.connect(function(err){
     runEDBM();
 });
 
+//==========================================================================================================================================
+//==Program START function==================================================================================================================
+//==========================================================================================================================================
+
 function runEDBM(){
+    renderEmployees();
+    renderEmployeesNoMan();
+    renderRoles();
     inquirer.prompt({
         name: "action",
         type: "list",
         message: "What would you like to do?",
         choices: [
-            "Add a department, role, or employee",
             "View a department, role, or employee",
+            "Add a department, role, or employee",
             "Update an employee's role",
             "Exit"
         ]
     }).then(function(answer){
         switch (answer.action){
-            case "Add a department, role, or employee":
-                runAddAction();
-                break;
             case "View a department, role, or employee":
                 runViewAction();
+                break;
+            case "Add a department, role, or employee":
+                runAddAction();
                 break;
             case "Update an employee's role":
                 runUpdateAction();
@@ -47,6 +63,10 @@ function runEDBM(){
         }
     });
 }
+
+//==========================================================================================================================================
+//==Primary ADD function (departments, employees, roles)====================================================================================
+//==========================================================================================================================================
 
 function runAddAction(){
     inquirer.prompt({
@@ -77,6 +97,10 @@ function runAddAction(){
     });
 }
 
+//==========================================================================================================================================
+//==Primary VIEW function (departments, employees, roles)===================================================================================
+//==========================================================================================================================================
+
 function runViewAction(){
     inquirer.prompt({
         name: "action",
@@ -91,40 +115,13 @@ function runViewAction(){
     }).then(function(answer){
         switch (answer.action){
             case "Departments":
-                query = "SELECT * FROM department";
-                connection.query(query, function(err, res){
-                    if (err) throw err;
-                    console.log("\n===========Department List===========");
-                    for (var i = 0; i < res.length; i++) {
-                        console.log(res[i].name)
-                    }
-                    console.log("\n");
-                    runEDBM();
-                });
+                viewDepartments();
                 break;
             case "Employees":
-                query = "SELECT * FROM employee INNER JOIN employeeDB.role ON employee.role_id = role.rID;";
-                connection.query(query, function(err, res){
-                    if (err) throw err;
-                    console.log("\n===========Employee List===========");
-                    for (var i = 1; i < res.length; i++) {
-                        console.log(`Name: ${res[i].first_name} ${res[i].last_name} | Role: ${res[i].title} | Manager: ${res[res[i].manager_id-1].first_name} ${res[res[i].manager_id-1].last_name}`);
-                    }
-                    console.log("\n");
-                    runEDBM();
-                });
+                viewEmployees();
                 break;
             case "Roles":
-                query = "SELECT title, salary, name FROM department INNER JOIN employeeDB.role ON role.dept_id = department.id;";
-                connection.query(query, function(err, res){
-                    if (err) throw err;
-                    console.log("\n===========Role List===========");
-                    for (var i = 0; i < res.length; i++) {
-                        console.log(`Title: ${res[i].title} | Salary: ${res[i].salary} | Department: ${res[i].name}`)
-                    }
-                    console.log("\n");
-                    runEDBM();
-                });
+                viewRoles();
                 break;
             case "Cancel":
                 console.log("\n");
@@ -134,10 +131,90 @@ function runViewAction(){
     });
 }
 
+//==========================================================================================================================================
+//==Primary UPDATE function (employee role)=================================================================================================
+//==========================================================================================================================================
+
 function runUpdateAction(){
-    console.log("Update Action Goes Here");
-    runEDBM();
+    console.log(employeeArray);
+    inquirer.prompt([
+        {
+            name: "empUpdate",
+            type: "list",
+            message: "Which employee would you like to update?",
+            choices: employeeArray
+        },
+        {
+            name: "roleUpdate",
+            type: "list",
+            message: "What is their updated role?",
+            choices: roleArray
+        }
+    ]).then(function(answer){
+        var empSplit = answer.empUpdate.split(" ");
+        console.log("First: " + empSplit[0]);
+        console.log("Last: " + empSplit[1]);
+        query = "SELECT * FROM role WHERE title = ?";
+        sql = answer.roleUpdate;
+        connection.query(query, sql, function(err, res){
+            if (err) throw err;
+            var newID = res[0].rID;
+            query = "UPDATE employee SET role_id = ? WHERE first_name = ? and last_name = ?"
+            sql = [newID, empSplit[0],empSplit[1]];
+            connection.query(query, sql, function(err,res){
+                if (err) throw err;
+            })
+        })
+        runEDBM();
+    })
 }
+
+//==========================================================================================================================================
+//==Secondary VIEW functions================================================================================================================
+//==========================================================================================================================================
+
+function viewDepartments(){
+    query = "SELECT * FROM department";
+    connection.query(query, function(err, res){
+        if (err) throw err;
+        console.log("\n===========Department List===========");
+        for (var i = 0; i < res.length; i++) {
+            console.log(res[i].name)
+        }
+        console.log("\n");
+        runEDBM();
+    });
+}
+
+function viewEmployees(){
+    query = "SELECT * FROM employee INNER JOIN employeeDB.role ON employee.role_id = role.rID;";
+    connection.query(query, function(err, res){
+        if (err) throw err;
+        console.log("\n===========Employee List===========");
+        for (var i = 1; i < res.length; i++) {
+            console.log(`Name: ${res[i].first_name} ${res[i].last_name} | Role: ${res[i].title} | Manager: ${res[res[i].manager_id-1].first_name} ${res[res[i].manager_id-1].last_name}`);
+        }
+        console.log("\n");
+        runEDBM();
+    });
+}
+
+function viewRoles(){
+    query = "SELECT title, salary, name FROM department INNER JOIN employeeDB.role ON role.dept_id = department.id;";
+    connection.query(query, function(err, res){
+        if (err) throw err;
+        console.log("\n===========Role List===========");
+        for (var i = 0; i < res.length; i++) {
+            console.log(`Title: ${res[i].title} | Salary: ${res[i].salary} | Department: ${res[i].name}`)
+        }
+        console.log("\n");
+        runEDBM();
+    });
+}
+
+//==========================================================================================================================================
+//==Secondary ADD functions=================================================================================================================
+//==========================================================================================================================================
 
 function addDepartment(){
     inquirer.prompt({
@@ -178,12 +255,14 @@ function addEmployee(){
         {
             name: "newEmployeeRole",
             type: "list",
+            message: "What is their role?",
             choices: roleArray
         },
         {
             name: "newEmployeeManager",
             type: "list",
-            choices: employeeArray
+            message: "Who is their manager?",
+            choices: managerArray
         }
     ]).then(function(answer){
         query = "select * from employee INNER JOIN employeeDB.role ON employee.role_id = role.rID";
@@ -201,31 +280,44 @@ function addEmployee(){
             sql = [`${answer.newEmployeeFirst}`,`${answer.newEmployeeLast}`,`${rID}`,`${mID}`];
             connection.query(query, sql, function(err, res){
                 if (err) throw err;
-                console.log(`Employee Added.`)
-            })        
-            runEDBM();
+                console.log(`Employee Added.`);
+                query = "SELECT * FROM employee INNER JOIN employeeDB.role ON employee.role_id = role.rID;";
+                connection.query(query, function(err, res){
+                    if (err) throw err;
+                    console.log("\n===========Employee List===========");
+                    for (var i = 1; i < res.length; i++) {
+                        console.log(`Name: ${res[i].first_name} ${res[i].last_name} | Role: ${res[i].title} | Manager: ${res[res[i].manager_id-1].first_name} ${res[res[i].manager_id-1].last_name}`);
+                    }
+                    console.log("\n");
+                    runEDBM();
+                });
+            });
         })
     })
 }
 
-// `"${answer.newEmployeeFirst}", "${answer.newEmployeeLast}", ${rID}, ${mID}`
+function addRole(){
+    console.log("\nAdd role action goes here\n");
+    runEDBM();
+}
 
-// function insertEmployee(){
-//     query = "INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?)";
-//     sql = `"${first_name}", "${last_name}", ${rID}, ${mID}`;
-//     connection.query(query, sql, function(err, res){
-//         if (err) throw err;
-//         console.log(`Employee Added.`)
-//         console.log("\n===========Employee List===========");
-//                     for (var i = 1; i < res.length; i++) {
-//                         console.log(`Name: ${res[i].first_name} ${res[i].last_name} | Role: ${res[i].title} | Manager: ${res[res[i].manager_id-1].first_name} ${res[res[i].manager_id-1].last_name}`);
-//                     }
-//                     console.log("\n");
-//     })
-// }
+//==========================================================================================================================================
+//==Array filling functions=================================================================================================================
+//==========================================================================================================================================
 
 function renderEmployees(){
-    employeeArray = ["No Manager"];
+    managerArray = ["No Manager"];
+    query = "select * from employee";
+    connection.query(query,function(err, res){
+        if (err) throw err;
+        for (var i = 0; i < res.length; i++){
+            managerArray.push(`${res[i].first_name} ${res[i].last_name}`);
+        }
+    })
+}
+
+function renderEmployeesNoMan(){
+    employeeArray = [];
     query = "select * from employee";
     connection.query(query,function(err, res){
         if (err) throw err;
