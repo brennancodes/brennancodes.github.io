@@ -7,6 +7,7 @@ const inquirer = require("inquirer");
 var employeeArray = [];
 var managerArray = ["No Manager"];
 var roleArray = [];
+var departmentArray = [];
 var query;
 var mID;
 var rID;
@@ -58,7 +59,7 @@ function runEDBM(){
                 runUpdateAction();
                 break;
             case "Exit":
-                console.log("Thank you for using the employee database manager. Your session has ended.");
+                console.log("\nThank you for using the employee database manager. Your session has ended.\n");
                 connection.end();
         }
     });
@@ -136,7 +137,6 @@ function runViewAction(){
 //==========================================================================================================================================
 
 function runUpdateAction(){
-    console.log(employeeArray);
     inquirer.prompt([
         {
             name: "empUpdate",
@@ -152,8 +152,6 @@ function runUpdateAction(){
         }
     ]).then(function(answer){
         var empSplit = answer.empUpdate.split(" ");
-        console.log("First: " + empSplit[0]);
-        console.log("Last: " + empSplit[1]);
         query = "SELECT * FROM role WHERE title = ?";
         sql = answer.roleUpdate;
         connection.query(query, sql, function(err, res){
@@ -297,8 +295,38 @@ function addEmployee(){
 }
 
 function addRole(){
-    console.log("\nAdd role action goes here\n");
-    runEDBM();
+    renderDepts();
+    inquirer.prompt([
+        {
+            name: "newRoleTitle",
+            type: "input",
+            message: "What new role should be added to the database?"
+        },
+        {
+            name: "newRoleSalary",
+            type: "number",
+            message: "What is the salary of the new role?"
+        },
+        {
+            name: "newRoleDept",
+            type: "list",
+            message: "What department does the new role belong to?",
+            choices: departmentArray
+        }
+    ]).then(function(answer){
+        query = "select * from department LEFT JOIN employeeDB.role ON role.dept_id = department.id WHERE name = ?";
+        sql = answer.newRoleDept;
+        connection.query(query, sql, function(err, res){
+            if (err) throw err;
+            var dID = res[0].id;
+            query = "INSERT INTO role (title, salary, dept_id) VALUES (?, ?, ?)"
+            connection.query(query,[answer.newRoleTitle, answer.newRoleSalary, dID], function(err, res){
+                if (err) throw err;
+                console.log("\nThe new role has been added to the database.\n")
+                runEDBM();
+            })
+        })
+    })
 }
 
 //==========================================================================================================================================
@@ -333,6 +361,16 @@ function renderRoles(){
         if (err) throw err;
         for (var i = 0; i < res.length; i++){
             roleArray.push(`${res[i].title}`);
+        }
+    })
+}
+
+function renderDepts(){
+    query = "select * from department";
+    connection.query(query,function(err, res){
+        if (err) throw err;
+        for (var i = 0; i < res.length; i++){
+            departmentArray.push(`${res[i].name}`);
         }
     })
 }
