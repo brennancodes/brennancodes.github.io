@@ -267,7 +267,10 @@ function addEmployee(){
         connection.query(query,function(err, res){
             if (err) throw err;
             for (var i = 0; i<res.length; i++){
-                if (res[i].first_name + " " + res[i].last_name == answer.newEmployeeManager){
+                if (answer.newEmployeeManager == "No Manager"){
+                    mID = null;
+                }
+                else if (res[i].first_name + " " + res[i].last_name == answer.newEmployeeManager){
                     mID = res[i].id;
                 }
                 if (res[i].title == answer.newEmployeeRole){
@@ -275,7 +278,7 @@ function addEmployee(){
                 }
             }
             query = "INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)";
-            sql = [`${answer.newEmployeeFirst}`,`${answer.newEmployeeLast}`,`${rID}`,`${mID}`];
+            sql = [`${answer.newEmployeeFirst}`,`${answer.newEmployeeLast}`,`${rID}`,mID];
             connection.query(query, sql, function(err, res){
                 if (err) throw err;
                 console.log(`Employee Added.`);
@@ -284,7 +287,12 @@ function addEmployee(){
                     if (err) throw err;
                     console.log("\n===========Employee List===========");
                     for (var i = 1; i < res.length; i++) {
-                        console.log(`Name: ${res[i].first_name} ${res[i].last_name} | Role: ${res[i].title} | Manager: ${res[res[i].manager_id-1].first_name} ${res[res[i].manager_id-1].last_name}`);
+                        if (res[i].manager_id == null){
+                            console.log(`Name: ${res[i].first_name} ${res[i].last_name} | Role: ${res[i].title} | Manager: None`);
+                        }
+                        else {
+                            console.log(`Name: ${res[i].first_name} ${res[i].last_name} | Role: ${res[i].title} | Manager: ${res[res[i].manager_id-1].first_name} ${res[res[i].manager_id-1].last_name}`);
+                        }
                     }
                     console.log("\n");
                     runEDBM();
