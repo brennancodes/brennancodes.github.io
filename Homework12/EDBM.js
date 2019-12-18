@@ -162,9 +162,9 @@ function runUpdateAction(){
             sql = [newID, empSplit[0],empSplit[1]];
             connection.query(query, sql, function(err,res){
                 if (err) throw err;
+                viewEmployees();
             })
         })
-        runEDBM();
     })
 }
 
@@ -199,9 +199,6 @@ function viewDepartments(){
         output = table(departmentTable, options);
 
         console.log(output);
-        // for (var i = 0; i < res.length; i++) {
-        //     console.log(res[i].name)
-        // }
         console.log("\n");
         runEDBM();
     });
@@ -222,7 +219,12 @@ function viewEmployees(){
                 managerName = "None";
             }
             else if (res[i].manager_id) {
-                managerName = `${res[res[i].manager_id-1].first_name} ${res[res[i].manager_id-1].last_name}`
+                targetID = res[i].manager_id;
+                for (var x = 0; x < res.length; x++){
+                    if (res[x].id == targetID){ 
+                        managerName = `${res[x].first_name} ${res[x].last_name}`
+                    }
+                }
             }
             employeeTable.push([`${res[i].first_name} ${res[i].last_name}`, `${res[i].title}`, `$${res[i].salary}`, managerName])
             
@@ -301,7 +303,6 @@ function addDepartment(){
         connection.query(query,answer.newDepartment,function(err, res){
             if (err) throw err;
             viewDepartments();
-            runEDBM();
             });
         });
 }
@@ -392,7 +393,6 @@ function addRole(){
                 if (err) throw err;
                 console.log("\nThe new role has been added to the database.\n")
                 viewRoles();
-                runEDBM();
             })
         })
     })
